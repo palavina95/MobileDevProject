@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity   android:name=".ModifyClass"
-                    android:label="@string/modifyClass">
+        <activity android:name=".DeleteClass"></activity>
+        <activity
+            android:name=".ModifyClass"
+            android:label="@string/modifyClass">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,9 +25,7 @@
         </activity>
         <activity
             android:name=".ResultListOfSearch"
-            android:label="@string/result">
-
-        </activity>
+            android:label="@string/result"></activity>
         <activity
             android:name=".AdminSettings"
             android:label="@string/welcome">
@@ -33,7 +33,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
