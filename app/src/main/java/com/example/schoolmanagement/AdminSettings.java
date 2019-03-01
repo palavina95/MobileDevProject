@@ -24,4 +24,9 @@ public class AdminSettings extends AppCompatActivity {
         Intent intent = new Intent(this, studentsSettings.class);
         startActivity(intent);
     }
+
+    public void goClassSettings(View view){
+        Intent intent = new Intent(this, SearchClass.class);
+        startActivity(intent);
+    }
 }
