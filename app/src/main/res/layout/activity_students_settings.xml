@@ -24,7 +24,9 @@
             android:id="@+id/button13"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Add a new student" />
+            android:text="Add a new student"
+            android:onClick="addStudentButton"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +55,9 @@
             android:id="@+id/button12"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:text="Search" />
+            android:text="Search"
+            android:onClick="searchStudentButton"
+            />
     </LinearLayout>
 
     <LinearLayout

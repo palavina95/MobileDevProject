@@ -13,19 +13,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeleteClass"></activity>
+
+        <activity android:name=".CreateClass"
+            android:label="Class creation">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SearchClass" />
+        </activity>
+
+        <activity android:name=".SearchClass"
+            android:label="Search class">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AdminSettings" />
+        </activity>
+
+        <activity android:name=".studentsSettings"
+            android:label="Students settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AdminSettings" />
+        </activity>
+
+        <activity android:name=".DeleteClass"
+            android:label="Delete Class">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ResultListOfSearch" />
+        </activity>
+
         <activity
             android:name=".ModifyClass"
             android:label="@string/modifyClass">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SearchClass" />
         </activity>
+
         <activity
             android:name=".ResultListOfSearch"
-            android:label="@string/result"></activity>
+            android:label="@string/result">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SearchClass" />
+        </activity>
+
         <activity
             android:name=".AdminSettings"
             android:label="@string/welcome">
@@ -33,7 +65,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MainActivity" />
+
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
