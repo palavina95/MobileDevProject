@@ -20,4 +20,10 @@
     <string name="welcome">Welcome</string>
     <string name="result">Results of Search</string>
     <string name="modifyClass">Modify this class</string>
+    <string name="EnterName">Enter the name</string>
+    <string name="EnterRoom">Enter the room</string>
+    <string name="EnterLocation">Enter the location</string>
+    <string name="EnterTeacher">Enter the teacher</string>
+    <string name="EnterBegin">Enter the beginning time</string>
+    <string name="EnterEnd">Enter the ending time</string>
 </resources>
