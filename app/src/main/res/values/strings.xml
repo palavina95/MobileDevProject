@@ -26,4 +26,7 @@
     <string name="EnterTeacher">Enter the teacher</string>
     <string name="EnterBegin">Enter the beginning time</string>
     <string name="EnterEnd">Enter the ending time</string>
+    <string name="EnterFirstname">Enter firstname</string>
+    <string name="EnterLastname">Enter lastname</string>
+    <string name="EnterBirthdate">Enter birth date</string>
 </resources>

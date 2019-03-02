@@ -37,7 +37,7 @@ public class ResultListOfSearch extends AppCompatActivity {
     }
 
     public void modifyButton(View view){
-        Intent intent = new Intent(this, CreateClass.class);
+        Intent intent = new Intent(this, CreateStudent.class);
         startActivity(intent);
     }
 }

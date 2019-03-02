@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.sql.Time;
-
 public class CreateClass extends AppCompatActivity {
 
     @Override
@@ -17,7 +15,6 @@ public class CreateClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Button createButton = (Button) findViewById(R.id.createClass);
         setContentView(R.layout.activity_create_class);
-
     }
 
     @Override
@@ -29,9 +26,9 @@ public class CreateClass extends AppCompatActivity {
     public void createMyClass(View view) {
         StringBuffer result = new StringBuffer();
         EditText name = (EditText) findViewById(R.id.name);
-        EditText room = (EditText) findViewById(R.id.room);
-        EditText location = (EditText) findViewById(R.id.location);
-        EditText teacher = (EditText) findViewById(R.id.teacher);
+        EditText room = (EditText) findViewById(R.id.firstname);
+        EditText location = (EditText) findViewById(R.id.lastname);
+        EditText teacher = (EditText) findViewById(R.id.birthdate);
         EditText beginTime = (EditText) findViewById(R.id.beginTime);
         EditText endTime = (EditText) findViewById(R.id.endTime);
 

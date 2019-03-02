@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-public class studentsSettings extends AppCompatActivity {
+public class SearchStudent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_students_settings);
+        setContentView(R.layout.activity_search_student);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class studentsSettings extends AppCompatActivity {
     }
 
     public void addStudentButton(View view){
-        Intent intent = new Intent(this, CreateClass.class);
+        Intent intent = new Intent(this, CreateStudent.class);
         startActivity(intent);
     }
 }
