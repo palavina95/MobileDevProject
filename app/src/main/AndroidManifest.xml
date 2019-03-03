@@ -13,12 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Settings"
-            android:label="Settings">
-            <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDDa-RU4iPBR5fssfQ4kPxtU0Nmdw2s6Gg"/>
-        </activity>
-        <activity
-            android:name=".ModifyStudent"
+        <activity android:name=".ModifyStudent"
             android:label="Modify student">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
