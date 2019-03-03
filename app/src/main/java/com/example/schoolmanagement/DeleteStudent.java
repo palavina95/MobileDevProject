@@ -8,9 +8,8 @@ import android.widget.Toast;
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
 
-public class DeleteClass extends AppCompatActivity {
+public class DeleteStudent extends AppCompatActivity {
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_class);
@@ -19,8 +18,8 @@ public class DeleteClass extends AppCompatActivity {
         swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
             @Override
             public void onStateChange(boolean active) {
-                Toast.makeText(DeleteClass.this, "DELETION CONFIRMED !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(DeleteClass.this, ResultListOfSearch.class);
+                Toast.makeText(DeleteStudent.this, "DELETION CONFIRMED !", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DeleteStudent.this, ResultListOfSearch.class);
                 startActivity(intent);
             }
         });
