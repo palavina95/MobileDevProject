@@ -96,11 +96,11 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-                        Intent intent = new Intent(ResultListOfSearchStudent.this, ModifyClass.class);
+                        Intent intent = new Intent(ResultListOfSearchStudent.this, ModifyStudent.class);
                         startActivity(intent);
                         break;
                     case 1:
-                        Intent intent2 = new Intent(ResultListOfSearchStudent.this, DeleteClass.class);
+                        Intent intent2 = new Intent(ResultListOfSearchStudent.this, DeleteStudent.class);
                         startActivity(intent2);
                         break;
                 }
