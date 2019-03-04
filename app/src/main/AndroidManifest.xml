@@ -82,6 +82,13 @@
                 android:value=".ResultListOfSearchClass" />
         </activity>
         <activity
+            android:name=".DeleteStudent"
+            android:label="Delete Student">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ResultListOfSearchStudent" />
+        </activity>
+        <activity
             android:name=".ModifyClass"
             android:label="@string/modifyClass">
             <meta-data

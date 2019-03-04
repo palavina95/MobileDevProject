@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class DisplayStudent extends AppCompatActivity {
@@ -19,7 +18,7 @@ public class DisplayStudent extends AppCompatActivity {
         String message = intent.getStringExtra(ResultListOfSearchStudent.EXTRA_MESSAGE);
 
         //Create the text view
-        TextView textView = findViewById(R.id.firstname);
+        TextView textView = findViewById(R.id.room);
         textView.setText(message);
     }
 
