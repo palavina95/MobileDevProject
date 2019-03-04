@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -17,8 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayStudent"
-                    android:label="Display Student">
+        <activity
+            android:name=".InfosApp"
+            android:label="Infos School Management" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Settings" />
+        </activity>
+        <activity
+            android:name=".DisplayStudent"
+            android:label="Display Student">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ResultListOfSearchStudent" />
@@ -38,7 +47,13 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".Settings" />
+        <activity
+            android:name=".Settings"
+            android:label="Settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AdminSettings" />
+        </activity>
         <activity
             android:name=".ModifyStudent"
             android:label="Modify student">
