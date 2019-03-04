@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class SearchStudent extends AppCompatActivity {
@@ -28,5 +29,19 @@ public class SearchStudent extends AppCompatActivity {
     public void addStudentButton(View view){
         Intent intent = new Intent(this, CreateStudent.class);
         startActivity(intent);
+    }
+
+    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, Settings.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
