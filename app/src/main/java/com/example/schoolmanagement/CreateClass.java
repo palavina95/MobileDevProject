@@ -4,7 +4,11 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
@@ -22,11 +26,20 @@ public class CreateClass extends AppCompatActivity {
 
     public static final String CHANNEL_ID_1 = "New class...";
     private NotificationManagerCompat notificationManagerCompat;
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Button createButton = (Button) findViewById(R.id.createClass);
+
+        sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
+        int r=sharedPreferences.getInt("a_r",0);
+        int g=sharedPreferences.getInt("a_g",0);
+        int b=sharedPreferences.getInt("a_b",0);
+        ActionBarClr(r,g,b);
+
         setContentView(R.layout.activity_create_class);
     }
 
@@ -110,6 +123,12 @@ public class CreateClass extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void ActionBarClr(int r,int g,int b){
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.rgb(r
+                        ,g,b)));
     }
 
 
