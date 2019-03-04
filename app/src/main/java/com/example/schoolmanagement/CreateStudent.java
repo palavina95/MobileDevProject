@@ -24,7 +24,7 @@ public class CreateStudent extends AppCompatActivity {
     public void createMyStudent(View view) {
         StringBuffer result = new StringBuffer();
         EditText firstname = (EditText) findViewById(R.id.firstname);
-        EditText lastname = (EditText) findViewById(R.id.lastname);
+        EditText lastname = (EditText) findViewById(R.id.firstname);
         EditText birtdate = (EditText) findViewById(R.id.birthdate);
         //EditText picture = (EditText) findViewById(R.id.birthdate);
 

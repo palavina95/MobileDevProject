@@ -17,6 +17,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DisplayStudent"
+                    android:label="Display Student">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ResultListOfSearchStudent" />
+        </activity>
+        <activity
+            android:name=".DisplayClass"
+            android:label="Display Class">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ResultListOfSearchClass" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -66,7 +79,7 @@
             android:label="Delete Class">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ResultListOfSearch" />
+                android:value=".ResultListOfSearchClass" />
         </activity>
         <activity
             android:name=".ModifyClass"
@@ -76,11 +89,18 @@
                 android:value=".SearchClass" />
         </activity>
         <activity
-            android:name=".ResultListOfSearch"
+            android:name=".ResultListOfSearchClass"
             android:label="@string/result">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SearchClass" />
+        </activity>
+        <activity
+            android:name=".ResultListOfSearchStudent"
+            android:label="@string/result">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SearchStudent" />
         </activity>
         <activity
             android:name=".AdminSettings"

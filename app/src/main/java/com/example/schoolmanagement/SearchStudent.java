@@ -21,7 +21,7 @@ public class SearchStudent extends AppCompatActivity {
     }
 
     public void searchStudentButton(View view){
-        Intent intent = new Intent(this, ResultListOfSearch.class);
+        Intent intent = new Intent(this, ResultListOfSearchStudent.class);
         startActivity(intent);
     }
 

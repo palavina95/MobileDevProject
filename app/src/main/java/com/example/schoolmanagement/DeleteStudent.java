@@ -19,7 +19,7 @@ public class DeleteStudent extends AppCompatActivity {
             @Override
             public void onStateChange(boolean active) {
                 Toast.makeText(DeleteStudent.this, "DELETION CONFIRMED !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(DeleteStudent.this, ResultListOfSearch.class);
+                Intent intent = new Intent(DeleteStudent.this, ResultListOfSearchStudent.class);
                 startActivity(intent);
             }
         });

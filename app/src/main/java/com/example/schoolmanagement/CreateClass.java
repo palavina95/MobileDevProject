@@ -27,7 +27,7 @@ public class CreateClass extends AppCompatActivity {
         StringBuffer result = new StringBuffer();
         EditText name = (EditText) findViewById(R.id.name);
         EditText room = (EditText) findViewById(R.id.firstname);
-        EditText location = (EditText) findViewById(R.id.lastname);
+        EditText location = (EditText) findViewById(R.id.firstname);
         EditText teacher = (EditText) findViewById(R.id.birthdate);
         EditText beginTime = (EditText) findViewById(R.id.beginTime);
         EditText endTime = (EditText) findViewById(R.id.endTime);
