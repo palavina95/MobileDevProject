@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".CreateClass">
 
+    <!-- salut -->
+
     <Button
         android:id="@+id/createStudent"
         android:layout_width="1080px"

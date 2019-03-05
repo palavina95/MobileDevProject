@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CreateClass">
 
+    <!-- salut -->
 
     <TextView
         android:id="@+id/tvd_firstname_student"
