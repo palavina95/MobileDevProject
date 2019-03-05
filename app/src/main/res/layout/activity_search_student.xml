@@ -48,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Search a student ..." />
+            android:hint="Search a student..."
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/button12"
