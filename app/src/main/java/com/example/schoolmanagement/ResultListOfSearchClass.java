@@ -36,7 +36,7 @@ public class ResultListOfSearchClass extends AppCompatActivity {
 
         setContentView(R.layout.activity_result_list_of_search_class);
 
-        SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listView);
+        SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listViewClass);
 
         final ArrayList<String> list = new ArrayList<>();
         list.add("Vivian");

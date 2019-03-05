@@ -10,15 +10,19 @@
         android:id="@+id/button4"
         android:layout_width="1080px"
         android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Save"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endtime_class"
+        app:layout_constraintVertical_bias="0.959" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/name_class"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -29,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/room_number"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -37,10 +41,10 @@
         android:text="N° Room"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/name_class" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/location_room"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -48,10 +52,10 @@
         android:text="Location"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/room_number" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/teacher_class"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -59,10 +63,10 @@
         android:text="Teacher"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/location_room" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/begintime_class"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -70,10 +74,10 @@
         android:text="BeginTime"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/teacher_class" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/endtime_class"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -81,10 +85,22 @@
         android:text="EndTime"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/begintime_class" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/text_teacher_class"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/teacher_class"
+        app:layout_constraintTop_toBottomOf="@+id/location_class" />
+
+    <EditText
+        android:id="@+id/text_name_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -92,11 +108,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/name_class"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/room"
+        android:id="@+id/text_begintime_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -104,11 +120,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintStart_toEndOf="@+id/begintime_class"
+        app:layout_constraintTop_toBottomOf="@+id/text_teacher_class" />
 
     <EditText
-        android:id="@+id/room"
+        android:id="@+id/text_room_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -116,41 +132,31 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/room" />
+        app:layout_constraintStart_toEndOf="@+id/room_number"
+        app:layout_constraintTop_toBottomOf="@+id/text_name_class" />
 
     <EditText
-        android:id="@+id/birthdate"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/room" />
-
-    <EditText
-        android:id="@+id/beginTime"
+        android:id="@+id/location_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="time"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/birthdate" />
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/location_room"
+        app:layout_constraintTop_toBottomOf="@+id/text_room_class" />
 
     <EditText
-        android:id="@+id/editText16"
+        android:id="@+id/text_endtime_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="time"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/beginTime" />
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/endtime_class"
+        app:layout_constraintTop_toBottomOf="@+id/text_begintime_class" />
 
 </android.support.constraint.ConstraintLayout>

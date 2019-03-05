@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <Button
-            android:id="@+id/button13"
+            android:id="@+id/button_add_class"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="addClassB"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/search_text_class"
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:ems="10"
@@ -52,7 +52,7 @@
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/button12"
+            android:id="@+id/button_search_class"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:onClick="searchClassB"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/birthdate_student"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="OR"

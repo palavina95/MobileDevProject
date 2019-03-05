@@ -34,9 +34,9 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
         int b=sharedPreferences.getInt("a_b",0);
         ActionBarClr(r,g,b);
 
-        setContentView(R.layout.activity_result_list_of_search_class);
+        setContentView(R.layout.activity_result_list_of_search_student);
 
-        SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listView);
+        SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listViewStudent);
 
         final ArrayList<String> list = new ArrayList<>();
         list.add("Vivian");

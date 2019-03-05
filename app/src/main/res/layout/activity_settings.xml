@@ -17,11 +17,11 @@
         android:layout_marginTop="20dp"
         android:text="@string/mailHES"
         android:clickable="true"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintStart_toEndOf="@+id/ecole_text_mail"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/ecole_name"
         android:layout_width="289dp"
         android:layout_height="27dp"
         android:layout_marginStart="49dp"
@@ -30,10 +30,10 @@
         android:text="@string/adresseHES1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/ecole_npa" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/ecole_adresse"
         android:layout_width="289dp"
         android:layout_height="27dp"
         android:layout_marginStart="49dp"
@@ -42,10 +42,10 @@
         android:text="@string/adresseHES2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/ecole_name" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/ecole_case_postale"
         android:layout_width="289dp"
         android:layout_height="27dp"
         android:layout_marginStart="49dp"
@@ -54,10 +54,10 @@
         android:text="@string/adresseHES3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/ecole_adresse" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/ecole_npa"
         android:layout_width="289dp"
         android:layout_height="27dp"
         android:layout_marginStart="49dp"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/ecole_text_phone"
         android:layout_width="124dp"
         android:layout_height="27dp"
         android:layout_marginStart="49dp"
@@ -77,7 +77,7 @@
         android:text="@string/labelTel"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale" />
 
     <TextView
         android:id="@+id/phoneNumber"
@@ -89,18 +89,18 @@
         android:text="@string/telHES"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toEndOf="@+id/ecole_text_phone"
+        app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/ecole_text_mail"
         android:layout_width="124dp"
         android:layout_height="27dp"
         android:layout_marginStart="49dp"
         android:layout_marginTop="20dp"
         android:text="@string/labelMail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/ecole_text_phone" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -111,7 +111,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale"
         tools:context=".MapActivity" />
 
     <LinearLayout
@@ -127,7 +127,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/ecole_text_mail"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioGroup
