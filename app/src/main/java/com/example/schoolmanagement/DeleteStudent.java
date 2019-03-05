@@ -3,6 +3,7 @@ package com.example.schoolmanagement;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,9 @@ public class DeleteStudent extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Bloque on vertical
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
     }
 

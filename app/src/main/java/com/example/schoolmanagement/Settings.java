@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -171,6 +172,9 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+        //Bloque on vertical
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
