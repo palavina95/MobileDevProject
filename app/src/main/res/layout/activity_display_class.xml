@@ -72,75 +72,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvd_begintime_class" />
 
-    <EditText
+    <TextView
         android:id="@+id/d_name_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="96dp"
         android:ems="10"
-        android:text="vide"
-        android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/tvd_name_class"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/d_room_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:text="vide"
-        android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/tvd_room_class"
         app:layout_constraintTop_toBottomOf="@+id/d_name_class" />
 
-    <EditText
+    <TextView
         android:id="@+id/d_location_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:text="vide"
-        android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/tvd_location_class"
         app:layout_constraintTop_toBottomOf="@+id/d_room_class" />
 
-    <EditText
+    <TextView
         android:id="@+id/d_teacher_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:text="vide"
-        android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/tvd_teacher_class"
         app:layout_constraintTop_toBottomOf="@+id/d_location_class" />
 
-    <EditText
+    <TextView
         android:id="@+id/d_beginTime_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:text="vide"
-        android:inputType="time"
         app:layout_constraintStart_toEndOf="@+id/tvd_begintime_class"
         app:layout_constraintTop_toBottomOf="@+id/d_teacher_class" />
 
-    <EditText
+    <TextView
         android:id="@+id/d_endTime_class"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:text="vide"
-        android:inputType="time"
         app:layout_constraintStart_toEndOf="@+id/tvd_endtime_class"
         app:layout_constraintTop_toBottomOf="@+id/d_beginTime_class" />
 
