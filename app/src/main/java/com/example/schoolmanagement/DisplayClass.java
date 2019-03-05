@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class DisplayClass extends AppCompatActivity {
@@ -33,7 +32,7 @@ public class DisplayClass extends AppCompatActivity {
         String message = intent.getStringExtra(ResultListOfSearchClass.EXTRA_MESSAGE);
 
         //Create the text view
-        TextView textview = findViewById(R.id.name);
+        TextView textview = findViewById(R.id.d_name_class);
         textview.setText(message);
 
     }

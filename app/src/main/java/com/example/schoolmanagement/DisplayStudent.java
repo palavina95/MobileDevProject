@@ -32,7 +32,7 @@ public class DisplayStudent extends AppCompatActivity {
         String message = intent.getStringExtra(ResultListOfSearchStudent.EXTRA_MESSAGE);
 
         //Create the text view
-        TextView textView = findViewById(R.id.room);
+        TextView textView = findViewById(R.id.d_firstname);
         textView.setText(message);
     }
 

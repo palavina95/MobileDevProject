@@ -1,6 +1,5 @@
 package com.example.schoolmanagement;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -51,12 +50,12 @@ public class CreateClass extends AppCompatActivity {
 
     public void createMyClass(View view) {
         StringBuffer result = new StringBuffer();
-        EditText name = (EditText) findViewById(R.id.name);
-        EditText room = (EditText) findViewById(R.id.room);
-        EditText location = (EditText) findViewById(R.id.room);
-        EditText teacher = (EditText) findViewById(R.id.birthdate);
-        EditText beginTime = (EditText) findViewById(R.id.beginTime);
-        EditText endTime = (EditText) findViewById(R.id.endTime);
+        EditText name = (EditText) findViewById(R.id.name_class);
+        EditText room = (EditText) findViewById(R.id.room_class);
+        EditText location = (EditText) findViewById(R.id.room_class);
+        EditText teacher = (EditText) findViewById(R.id.teacher_class);
+        EditText beginTime = (EditText) findViewById(R.id.beginTime_class);
+        EditText endTime = (EditText) findViewById(R.id.endTime_class);
 
         result.append("Name: " + name.getText().toString() + "\n");
         result.append("Room number: " + room.getText().toString() + "\n");

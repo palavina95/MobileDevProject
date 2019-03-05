@@ -7,21 +7,19 @@
     tools:context=".CreateClass">
 
     <Button
-        android:id="@+id/createClass"
+        android:id="@+id/createStudent"
         android:layout_width="1080px"
         android:layout_height="120dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="318dp"
         android:onClick="createMyStudent"
         android:text="Create"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/tv_picture_student"
         tools:ignore="OnClick" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_firstname_student"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
@@ -32,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_lastname_student"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
@@ -40,10 +38,10 @@
         android:text="Lastname"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_firstname_student" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_birthdate_student"
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
@@ -51,61 +49,55 @@
         android:text="Birthdate"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_lastname_student" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_picture_student"
         android:layout_width="131dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="254dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="13dp"
         android:text="Picture"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_birthdate_student" />
 
 
     <EditText
-        android:id="@+id/room"
+        android:id="@+id/enter_firstname"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="27dp"
         android:layout_marginTop="96dp"
         android:ems="10"
         android:hint="@string/EnterFirstname"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/tv_firstname_student"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/room"
+        android:id="@+id/enter_lastname"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/EnterLastname"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/tv_lastname_student"
+        app:layout_constraintTop_toBottomOf="@+id/enter_firstname" />
 
     <EditText
-        android:id="@+id/birthdate"
+        android:id="@+id/enter_birthdate"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="27dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="@string/EnterBirthdate"
         android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/room" />
+        app:layout_constraintStart_toEndOf="@+id/tv_birthdate_student"
+        app:layout_constraintTop_toBottomOf="@+id/enter_lastname" />
 
 
 </android.support.constraint.ConstraintLayout>
