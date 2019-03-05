@@ -28,12 +28,12 @@
         app:button_background="@drawable/shape_button" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/delete_student_question"
         android:layout_width="match_parent"
         android:layout_height="91dp"
-        android:text="Are you sure you want to delete this student ?"
-        android:textAlignment="center"
         android:layout_marginTop="180dp"
+        android:text="Are you sure you want to delete this ?"
+        android:textAlignment="center"
         android:textSize="30sp" />
 
 </RelativeLayout>

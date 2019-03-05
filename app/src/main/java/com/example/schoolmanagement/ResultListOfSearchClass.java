@@ -7,12 +7,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -37,7 +34,7 @@ public class ResultListOfSearchClass extends AppCompatActivity {
         int b=sharedPreferences.getInt("a_b",0);
         ActionBarClr(r,g,b);
 
-        setContentView(R.layout.activity_result_list_of_search);
+        setContentView(R.layout.activity_result_list_of_search_class);
 
         SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listView);
 

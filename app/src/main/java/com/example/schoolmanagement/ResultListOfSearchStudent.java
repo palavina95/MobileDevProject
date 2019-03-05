@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,7 +34,7 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
         int b=sharedPreferences.getInt("a_b",0);
         ActionBarClr(r,g,b);
 
-        setContentView(R.layout.activity_result_list_of_search);
+        setContentView(R.layout.activity_result_list_of_search_class);
 
         SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listView);
 
