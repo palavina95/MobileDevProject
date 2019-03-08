@@ -1,5 +1,7 @@
 package com.example.schoolmanagement;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,8 +21,15 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import database.entities.Student;
+import viewmodel.StudentViewModel;
 
 public class ResultListOfSearchStudent extends AppCompatActivity {
+
+    //ViewModel
+    private StudentViewModel studentViewModel;
 
     private static final String TAG = "ResultListOfSearchActivity";
     public final static String EXTRA_MESSAGE = "com.example.schoolmanagement.MESSAGE";
@@ -28,6 +38,14 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        studentViewModel.getAllStudents().observe(this, new Observer<List<Student>>() {
+            @Override
+            public void onChanged(@Nullable List<Student> students) {
+                //update View of the list of students
+            }
+        });
 
         sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
         int r=sharedPreferences.getInt("a_r",0);
