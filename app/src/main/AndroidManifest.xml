@@ -66,7 +66,7 @@
             android:label="Student creation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SearchClass" />
+                android:value=".SearchStudent" />
         </activity>
         <activity
             android:name=".CreateClass"

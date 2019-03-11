@@ -3,13 +3,11 @@ package database.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "student/class_table")
+@Entity(tableName = "student/class_table", primaryKeys = {"FK_Student","FK_Class"})
 public class Student_Class {
 
-    @PrimaryKey()
     private int FK_Student;
 
-    @PrimaryKey()
     private int FK_Class;
 
     public Student_Class(int FK_Student, int FK_Class) {

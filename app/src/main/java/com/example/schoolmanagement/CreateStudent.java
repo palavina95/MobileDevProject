@@ -1,5 +1,6 @@
 package com.example.schoolmanagement;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,8 +12,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import database.entities.Student;
+import viewmodel.StudentViewModel;
 
 public class CreateStudent extends AppCompatActivity {
 
@@ -21,6 +26,7 @@ public class CreateStudent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Button createButton = (Button) findViewById(R.id.createStudent);
 
         sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
         int r=sharedPreferences.getInt("a_r",0);
@@ -41,18 +47,28 @@ public class CreateStudent extends AppCompatActivity {
     }
 
     public void createMyStudent(View view) {
-        StringBuffer result = new StringBuffer();
-        EditText firstname = (EditText) findViewById(R.id.enter_firstname);
-        EditText lastname = (EditText) findViewById(R.id.enter_lastname);
-        EditText birtdate = (EditText) findViewById(R.id.enter_birthdate);
-        //EditText picture = (EditText) findViewById(R.id.birthdate);
+        EditText textFirstname = (EditText)findViewById(R.id.enter_firstname);
+        String firstname = textFirstname.getText().toString();
+        EditText textLastname = (EditText)findViewById(R.id.enter_lastname);
+        String lastname = textLastname.getText().toString();
+        EditText textBirthdate = (EditText)findViewById(R.id.enter_birthdate);
+        String birthdate = textBirthdate.getText().toString();
 
-        result.append("Firstname: " + firstname.getText().toString() + "\n");
-        result.append("Lastname: " + lastname.getText().toString() + "\n");
-        result.append("Birthdate: " + birtdate.getText().toString() + "\n");
-
-        // TODO Auto-generated method stub
-        Toast.makeText(CreateStudent.this, result, Toast.LENGTH_LONG).show();
+        if(firstname.trim().isEmpty() || lastname.trim().isEmpty() || birthdate.trim().isEmpty()){
+            Toast.makeText(CreateStudent.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
+            return;
+        }else{
+            //On crée un étudiant
+            Student thisStudent = new Student(firstname,lastname,"visage1.jpg",birthdate);
+            StudentViewModel studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+            //On l'insert dans la base de donnée
+            studentViewModel.insert(thisStudent);
+            //On affiche un toast
+            Toast.makeText(CreateStudent.this, "Student created !", Toast.LENGTH_LONG).show();
+            //On revient à la page précédente
+            Intent intent = new Intent(this, SearchStudent.class);
+            startActivity(intent);
+        }
     }
 
     //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.

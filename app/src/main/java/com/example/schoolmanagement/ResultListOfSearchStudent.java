@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -23,6 +24,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.StudentsAdapter;
 import database.entities.Student;
 import viewmodel.StudentViewModel;
 
@@ -39,14 +41,6 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
-        studentViewModel.getAllStudents().observe(this, new Observer<List<Student>>() {
-            @Override
-            public void onChanged(@Nullable List<Student> students) {
-                //update View of the list of students
-            }
-        });
-
         sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
         int r=sharedPreferences.getInt("a_r",0);
         int g=sharedPreferences.getInt("a_g",0);
@@ -57,30 +51,20 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
 
         SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listViewStudent);
 
-        final ArrayList<String> list = new ArrayList<>();
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
+        // Construct the data source
+        final ArrayList<Student> arrayOfStudents = new ArrayList<Student>();
 
-        ArrayAdapter adapter = new ArrayAdapter(ResultListOfSearchStudent.this, android.R.layout.simple_list_item_1,list);
+        final StudentsAdapter adapter = new StudentsAdapter(ResultListOfSearchStudent.this, arrayOfStudents);
+
         listView.setAdapter(adapter);
+
+        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        studentViewModel.getAllStudents().observe(this, new Observer<List<Student>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Student> students) {
+                        adapter.addAll(students);
+                    }
+                });
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -126,10 +110,14 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
                 switch (index) {
                     case 0:
                         Intent intent = new Intent(ResultListOfSearchStudent.this, ModifyStudent.class);
+                        Student thisModifyStudent = arrayOfStudents.get(position);
+                        intent.putExtra("MyStudent",thisModifyStudent);
                         startActivity(intent);
                         break;
                     case 1:
                         Intent intent2 = new Intent(ResultListOfSearchStudent.this, DeleteStudent.class);
+                        Student thisDeleteStudent = arrayOfStudents.get(position);
+                        intent2.putExtra("MyStudent",thisDeleteStudent);
                         startActivity(intent2);
                         break;
                 }
@@ -142,8 +130,8 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent3 = new Intent(ResultListOfSearchStudent.this, DisplayStudent.class);
-                String message = list.get(position);
-                intent3.putExtra(EXTRA_MESSAGE,message);
+                Student thisSelectedStudent = arrayOfStudents.get(position);
+                intent3.putExtra("MyStudent",thisSelectedStudent);
                 startActivity(intent3);
             }
         });

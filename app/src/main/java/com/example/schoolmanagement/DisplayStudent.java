@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import database.entities.Student;
+
 public class DisplayStudent extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
@@ -28,13 +30,16 @@ public class DisplayStudent extends AppCompatActivity {
 
         setContentView(R.layout.activity_display_student);
 
-        //Get the message from the intent
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(ResultListOfSearchStudent.EXTRA_MESSAGE);
+        //Get the student we want to display
+        Student thisStudent = (Student) getIntent().getSerializableExtra("MyStudent");
 
-        //Create the text view
-        TextView textView = findViewById(R.id.d_firstname);
-        textView.setText(message);
+        //Create the text views
+        TextView textViewFirstname = findViewById(R.id.d_firstname);
+        textViewFirstname.setText(thisStudent.getFirstname());
+        TextView textViewLastname = findViewById(R.id.d_lastname);
+        textViewLastname.setText(thisStudent.getLastname());
+        TextView textViewBirthdate = findViewById(R.id.d_birthdate);
+        textViewBirthdate.setText(thisStudent.getBirthdate());
 
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

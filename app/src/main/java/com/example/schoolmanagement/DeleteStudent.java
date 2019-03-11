@@ -1,5 +1,6 @@
 package com.example.schoolmanagement;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
+
+import database.entities.Student;
+import viewmodel.StudentViewModel;
 
 public class DeleteStudent extends AppCompatActivity {
 
@@ -32,7 +36,13 @@ public class DeleteStudent extends AppCompatActivity {
         swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
             @Override
             public void onStateChange(boolean active) {
+                //On crée un étudiant
+                Student thisStudent = (Student) getIntent().getSerializableExtra("MyStudent");
+                StudentViewModel studentViewModel = ViewModelProviders.of(DeleteStudent.this).get(StudentViewModel.class);
+                //Afficher un toast
                 Toast.makeText(DeleteStudent.this, "DELETION CONFIRMED !", Toast.LENGTH_SHORT).show();
+                //On l'insert dans la base de donnée
+                studentViewModel.delete(thisStudent);
                 Intent intent = new Intent(DeleteStudent.this, ResultListOfSearchStudent.class);
                 startActivity(intent);
             }

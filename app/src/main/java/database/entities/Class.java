@@ -23,13 +23,13 @@ public class Class {
 
     private String EndingTime;
 
-    public Class(String name, int roomNumber, String location, String teacherName, String beginningTime, String endingTime) {
-        Name = name;
-        RoomNumber = roomNumber;
-        Location = location;
-        TeacherName = teacherName;
-        BeginningTime = beginningTime;
-        EndingTime = endingTime;
+    public Class(String Name, int RoomNumber, String Location, String TeacherName, String BeginningTime, String EndingTime) {
+        this.Name = Name;
+        this.RoomNumber = RoomNumber;
+        this.Location = Location;
+        this.TeacherName = TeacherName;
+        this.BeginningTime = BeginningTime;
+        this.EndingTime = EndingTime;
     }
 
     public void setPK_ID_Class(int PK_ID_Class) {

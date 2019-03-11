@@ -18,7 +18,7 @@ import database.entities.Class;
 import database.entities.Student;
 import database.entities.Student_Class;
 
-@Database(entities = {Student.class, Class.class, Student_Class.class}, version = 1)
+@Database(entities = {Student.class, Class.class, Student_Class.class}, version = 1,exportSchema = false)
 public abstract class SchoolManagementDatabase extends RoomDatabase {
 
     private static SchoolManagementDatabase instance;
