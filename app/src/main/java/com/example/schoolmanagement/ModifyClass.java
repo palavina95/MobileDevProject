@@ -1,5 +1,6 @@
 package com.example.schoolmanagement;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,10 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import database.entities.Class;
+import viewmodel.ClassViewModel;
 
 public class ModifyClass extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
+    private int idClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +36,60 @@ public class ModifyClass extends AppCompatActivity {
 
         setContentView(R.layout.activity_modify_class);
 
+        //Get the class we want to display
+        Class thisClass = (Class) getIntent().getSerializableExtra("MyClass");
+
+        //Create the text views
+        TextView textViewName = findViewById(R.id.text_name_class);
+        textViewName.setText(thisClass.getName());
+        TextView textViewRoom = findViewById(R.id.text_room_class);
+        textViewRoom.setText(String.valueOf(thisClass.getRoomNumber()));
+        TextView textViewLocation = findViewById(R.id.location_class);
+        textViewLocation.setText(thisClass.getLocation());
+        TextView textViewTeacher = findViewById(R.id.text_teacher_class);
+        textViewTeacher.setText(thisClass.getTeacherName());
+        TextView textViewBeginTime = findViewById(R.id.text_begintime_class);
+        textViewBeginTime.setText(thisClass.getBeginningTime());
+        TextView textViewEndTime = findViewById(R.id.text_endtime_class);
+        textViewEndTime.setText(thisClass.getEndingTime());
+
+        idClass = thisClass.getPK_ID_Class();
+
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    public void modifyClass(View view) {
+        EditText textViewName = findViewById(R.id.text_name_class);
+        String sName = textViewName.getText().toString();
+        EditText textViewRoom = findViewById(R.id.text_room_class);
+        String sRoom = textViewRoom.getText().toString();
+        EditText textViewLocation = findViewById(R.id.location_class);
+        String sLocation = textViewLocation.getText().toString();
+        EditText textViewTeacher = findViewById(R.id.text_teacher_class);
+        String sTeacher = textViewTeacher.getText().toString();
+        EditText textViewBeginTime = findViewById(R.id.text_begintime_class);
+        String sBeginTime = textViewBeginTime.getText().toString();
+        EditText textViewEndTime = findViewById(R.id.text_endtime_class);
+        String sEndTime = textViewEndTime.getText().toString();
+
+        if(sName.trim().isEmpty() || sRoom.trim().isEmpty() || sLocation.trim().isEmpty() || sTeacher.trim().isEmpty()
+                || sBeginTime.trim().isEmpty() || sEndTime.trim().isEmpty()){
+            Toast.makeText(ModifyClass.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
+            return;
+        }else{
+            //On crée une classe
+            Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
+            ClassViewModel classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
+            //On l'insert dans la base de donnée
+            thisClass.setPK_ID_Class(idClass);    //Pour pouvoir retrouver le bon étudiant
+            classViewModel.update(thisClass);
+            //On affiche un toast
+            Toast.makeText(ModifyClass.this, "Class updated !", Toast.LENGTH_LONG).show();
+            //On revient à la page précédente
+            Intent intent = new Intent(this, ResultListOfSearchClass.class);
+            startActivity(intent);
+        }
     }
 
     @Override

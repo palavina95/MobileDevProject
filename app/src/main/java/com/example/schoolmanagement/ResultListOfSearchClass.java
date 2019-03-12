@@ -1,25 +1,35 @@
 package com.example.schoolmanagement;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
+import database.entities.Class;
+import adapter.ClassAdapter;
+import viewmodel.ClassViewModel;
 
 public class ResultListOfSearchClass extends AppCompatActivity {
+
+    private ClassViewModel classViewModel;
 
     private static final String TAG = "ResultListOfSearchActivity";
     public final static String EXTRA_MESSAGE = "com.example.schoolmanagement.MESSAGE";
@@ -39,30 +49,20 @@ public class ResultListOfSearchClass extends AppCompatActivity {
 
         SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listViewClass);
 
-        final ArrayList<String> list = new ArrayList<>();
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
-        list.add("Vivian");
-        list.add("Audrey");
+        // Construct the data source
+        final ArrayList<Class> arrayOfClass = new ArrayList<Class>();
 
-        ArrayAdapter adapter = new ArrayAdapter(ResultListOfSearchClass.this, android.R.layout.simple_list_item_1,list);
+        final ClassAdapter adapter = new ClassAdapter(ResultListOfSearchClass.this, arrayOfClass);
+
         listView.setAdapter(adapter);
+
+        classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
+        classViewModel.getAllClass().observe(this, new Observer<List<Class>>() {
+            @Override
+            public void onChanged(@Nullable List<Class> classes) {
+                adapter.addAll(classes);
+            }
+        });
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -108,10 +108,14 @@ public class ResultListOfSearchClass extends AppCompatActivity {
                 switch (index) {
                     case 0:
                         Intent intent = new Intent(ResultListOfSearchClass.this, ModifyClass.class);
+                        Class thisModifyClass = arrayOfClass.get(position);
+                        intent.putExtra("MyClass", thisModifyClass);
                         startActivity(intent);
                         break;
                     case 1:
                         Intent intent2 = new Intent(ResultListOfSearchClass.this, DeleteClass.class);
+                        Class thisDeleteClass = arrayOfClass.get(position);
+                        intent2.putExtra("MyClass", thisDeleteClass);
                         startActivity(intent2);
                         break;
                 }
@@ -124,8 +128,8 @@ public class ResultListOfSearchClass extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent3 = new Intent(ResultListOfSearchClass.this, DisplayClass.class);
-                String message = list.get(position);
-                intent3.putExtra(EXTRA_MESSAGE,message);
+                Class thisSelectedClass = arrayOfClass.get(position);
+                intent3.putExtra("MyClass", thisSelectedClass);
                 startActivity(intent3);
             }
         });

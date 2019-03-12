@@ -50,9 +50,11 @@ public abstract class SchoolManagementDatabase extends RoomDatabase {
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
 
         private StudentDao studentDao;
+        private ClassDao classDao;
 
         private PopulateDbAsyncTask (SchoolManagementDatabase db){
             studentDao = db.studentDao();
+            classDao = db.classDao();
         }
 
         @Override
@@ -60,6 +62,11 @@ public abstract class SchoolManagementDatabase extends RoomDatabase {
             studentDao.insert(new Student("Vivian1","Bridy1","visage1.jpg","24-11-1995"));
             studentDao.insert(new Student("Vivian2","Bridy2","visage2.jpg","25-11-1995"));
             studentDao.insert(new Student("Vivian3","Bridy3","visage3.jpg","26-11-1995"));
+
+            classDao.insert(new Class("Marketing", 308, "Bellevue", "Nathalie", "08:30", "10:00"));
+            classDao.insert(new Class("Maths", 308, "Bellevue", "Nathalie", "08:30", "10:00"));
+            classDao.insert(new Class("Anglais", 308, "Bellevue", "Nathalie", "08:30", "10:00"));
+
 
             return null;
         }

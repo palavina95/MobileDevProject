@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import database.entities.Class;
+
 public class DisplayClass extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
@@ -27,6 +29,23 @@ public class DisplayClass extends AppCompatActivity {
         ActionBarClr(r,g,b);
 
         setContentView(R.layout.activity_display_class);
+
+        //Get the class we want to display
+        Class thisClass = (Class) getIntent().getSerializableExtra("MyClass");
+
+        //Create the text views
+        TextView textViewName = findViewById(R.id.d_name_class);
+        textViewName.setText(thisClass.getName());
+        TextView textViewRoom = findViewById(R.id.d_room_class);
+        textViewRoom.setText(String.valueOf(thisClass.getRoomNumber()));
+        TextView textViewLocation = findViewById(R.id.d_location_class);
+        textViewLocation.setText(thisClass.getLocation());
+        TextView textViewTeacher = findViewById(R.id.d_teacher_class);
+        textViewTeacher.setText(thisClass.getTeacherName());
+        TextView textViewBeginTime = findViewById(R.id.d_beginTime_class);
+        textViewBeginTime.setText(thisClass.getBeginningTime());
+        TextView textViewEndTime = findViewById(R.id.d_endTime_class);
+        textViewEndTime.setText(thisClass.getEndingTime());
 
         //Get the message from the intent
         Intent intent = getIntent();

@@ -3,10 +3,11 @@ package database.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.sql.Time;
 
 @Entity(tableName = "class_table")
-public class Class {
+public class Class implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int PK_ID_Class;

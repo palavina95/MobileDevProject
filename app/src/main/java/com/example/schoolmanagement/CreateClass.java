@@ -3,6 +3,7 @@ package com.example.schoolmanagement;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import database.entities.Class;
+import viewmodel.ClassViewModel;
 
 public class CreateClass extends AppCompatActivity {
 
@@ -55,11 +59,17 @@ public class CreateClass extends AppCompatActivity {
     public void createMyClass(View view) {
         StringBuffer result = new StringBuffer();
         EditText name = (EditText) findViewById(R.id.name_class);
+        String sName = name.getText().toString();
         EditText room = (EditText) findViewById(R.id.room_class);
+        String sRoom = room.getText().toString();
         EditText location = (EditText) findViewById(R.id.location_class);
+        String sLocation = location.getText().toString();
         EditText teacher = (EditText) findViewById(R.id.teacher_class);
+        String sTeacher = teacher.getText().toString();
         EditText beginTime = (EditText) findViewById(R.id.beginTime_class);
+        String sBeginTime = beginTime.getText().toString();
         EditText endTime = (EditText) findViewById(R.id.endTime_class);
+        String sEndTime = endTime.getText().toString();
 
         result.append("Name: " + name.getText().toString() + "\n");
         result.append("Room number: " + room.getText().toString() + "\n");
@@ -88,6 +98,24 @@ public class CreateClass extends AppCompatActivity {
                 .addAction(R.drawable.ic_touch_app_black_24dp, "Click to see it", pendingIntent );
 
         createNotificationChannel();
+
+        //DATA
+        if(sName.trim().isEmpty() || sRoom.trim().isEmpty() || sLocation.trim().isEmpty() || sTeacher.trim().isEmpty()
+                || sBeginTime.trim().isEmpty() || sEndTime.trim().isEmpty()){
+            Toast.makeText(CreateClass.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
+            return;
+        }else{
+            //On crée une classe
+            Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
+            ClassViewModel classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
+            //On l'insert dans la base de donnée
+            classViewModel.insert(thisClass);
+            //On affiche un toast
+            Toast.makeText(CreateClass.this, "Class created !", Toast.LENGTH_LONG).show();
+            //On revient à la page précédente
+            Intent intent = new Intent(this, SearchClass.class);
+            startActivity(intent);
+        }
 
         //Create the channel
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);

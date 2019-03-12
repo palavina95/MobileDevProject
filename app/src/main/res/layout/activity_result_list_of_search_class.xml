@@ -9,6 +9,7 @@
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listViewClass"/>
+        android:id="@+id/listViewClass"
+        tools:listitem="@layout/class_list_item"/>
 
 </android.support.constraint.ConstraintLayout>
