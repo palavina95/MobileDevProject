@@ -1,9 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".InfosApp">
+    android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="124dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/mailHES"
+            android:clickable="true"
+            app:layout_constraintStart_toEndOf="@+id/ecole_text_mail"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+
+        <TextView
+            android:id="@+id/ecole_name"
+            android:layout_width="289dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/adresseHES1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_npa" />
+
+        <TextView
+            android:id="@+id/ecole_adresse"
+            android:layout_width="289dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/adresseHES2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_name" />
+
+        <TextView
+            android:id="@+id/ecole_case_postale"
+            android:layout_width="289dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/adresseHES3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_adresse" />
+
+        <TextView
+            android:id="@+id/ecole_npa"
+            android:layout_width="289dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/adresseHES4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ecole_text_phone"
+            android:layout_width="124dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="300dp"
+            android:text="@string/labelTel"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale" />
+
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="168dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/telHES"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ecole_text_phone"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale" />
+
+        <TextView
+            android:id="@+id/ecole_text_mail"
+            android:layout_width="124dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/labelMail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_text_phone" />
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="331dp"
+            android:layout_height="256dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale"
+            tools:context=".MapActivity" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

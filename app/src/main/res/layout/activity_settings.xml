@@ -4,245 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/mail"
-        android:layout_width="124dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/mailHES"
-        android:clickable="true"
-        app:layout_constraintStart_toEndOf="@+id/ecole_text_mail"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
-
-    <TextView
-        android:id="@+id/ecole_name"
-        android:layout_width="289dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="73dp"
-        android:text="@string/adresseHES1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_npa" />
-
-    <TextView
-        android:id="@+id/ecole_adresse"
-        android:layout_width="289dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="73dp"
-        android:text="@string/adresseHES2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_name" />
-
-    <TextView
-        android:id="@+id/ecole_case_postale"
-        android:layout_width="289dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="73dp"
-        android:text="@string/adresseHES3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_adresse" />
-
-    <TextView
-        android:id="@+id/ecole_npa"
-        android:layout_width="289dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="73dp"
-        android:text="@string/adresseHES4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ecole_text_phone"
-        android:layout_width="124dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="300dp"
-        android:text="@string/labelTel"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale" />
-
-    <TextView
-        android:id="@+id/phoneNumber"
-        android:layout_width="168dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/telHES"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ecole_text_phone"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale" />
-
-    <TextView
-        android:id="@+id/ecole_text_mail"
-        android:layout_width="124dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/labelMail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_text_phone" />
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="331dp"
-        android:layout_height="256dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale"
-        tools:context=".MapActivity" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="1dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ecole_text_mail"
-        app:layout_constraintVertical_bias="0.0">
-
-        <RadioGroup
-            android:id="@+id/idForRadioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radio0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change the action bar color" />
-
-        </RadioGroup>
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal">
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="1dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-            <TextView
+            <RadioGroup
+                android:id="@+id/idForRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="R"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textR"
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change the action bar color" />
+
+            </RadioGroup>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="= 000" />
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="R"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="= 000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="G"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="= 000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="B"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="= 000" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seekBarRed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="G"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_margin="16dp"
+                android:max="255"
+                android:theme="@style/redTheme" />
 
-            <TextView
-                android:id="@+id/textG"
+            <SeekBar
+                android:id="@+id/seekBarGreen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="= 000" />
+                android:layout_margin="16dp"
+                android:max="255"
+                android:theme="@style/greenTheme" />
 
-            <TextView
+            <SeekBar
+                android:id="@+id/seekBarBlue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="B"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_margin="16dp"
+                android:max="255"
+                android:theme="@style/blueTheme" />
 
-            <TextView
-                android:id="@+id/textB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="= 000" />
         </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/seekBarRed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:max="255"
-            android:theme="@style/redTheme" />
-
-        <SeekBar
-            android:id="@+id/seekBarGreen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:max="255"
-            android:theme="@style/greenTheme" />
-
-        <SeekBar
-            android:id="@+id/seekBarBlue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:max="255"
-            android:theme="@style/blueTheme" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="395dp"
-        android:layout_height="6dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="?android:attr/listDivider"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mail" />
-
-</android.support.constraint.ConstraintLayout>
-    </ScrollView>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
