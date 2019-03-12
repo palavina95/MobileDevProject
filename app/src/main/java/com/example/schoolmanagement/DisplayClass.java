@@ -35,7 +35,7 @@ public class DisplayClass extends AppCompatActivity {
 
         //Create the text views
         TextView textViewName = findViewById(R.id.d_name_class);
-        textViewName.setText(thisClass.getName());
+        textViewName.setText(thisClass.getName() +" id : "+thisClass.getPK_ID_Class());
         TextView textViewRoom = findViewById(R.id.d_room_class);
         textViewRoom.setText(String.valueOf(thisClass.getRoomNumber()));
         TextView textViewLocation = findViewById(R.id.d_location_class);
@@ -46,14 +46,6 @@ public class DisplayClass extends AppCompatActivity {
         textViewBeginTime.setText(thisClass.getBeginningTime());
         TextView textViewEndTime = findViewById(R.id.d_endTime_class);
         textViewEndTime.setText(thisClass.getEndingTime());
-
-        //Get the message from the intent
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(ResultListOfSearchClass.EXTRA_MESSAGE);
-
-        //Create the text view
-        TextView textview = findViewById(R.id.d_name_class);
-        textview.setText(message);
 
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

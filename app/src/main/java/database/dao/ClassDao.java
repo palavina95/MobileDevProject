@@ -10,6 +10,7 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 import database.entities.Class;
+import database.entities.Student_Class;
 
 @Dao
 public interface ClassDao {
@@ -25,5 +26,8 @@ public interface ClassDao {
 
     @Query("SELECT * FROM class_table ORDER BY RoomNumber")
     LiveData<List<Class>> getAllClass();
+
+    @Query("SELECT * FROM class_table WHERE PK_ID_Class IN (SELECT FK_Class FROM `student/class_table` WHERE FK_Student = :FKStudent) ORDER BY RoomNumber")
+    LiveData<List<Class>> getAllClassByFKStudent(int FKStudent);
 
 }

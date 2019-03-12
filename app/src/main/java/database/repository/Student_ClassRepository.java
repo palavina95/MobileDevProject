@@ -26,7 +26,6 @@ public class Student_ClassRepository {
     public Student_ClassRepository(Application application){
         SchoolManagementDatabase database = SchoolManagementDatabase.getInstance(application);
         student_classDao = database.student_classDao();
-        allStudent_Classes = ((Student_ClassDao) student_classDao).getAllStudent_Class();
     }
 
     public void insert(Student_Class student_class)
@@ -42,10 +41,6 @@ public class Student_ClassRepository {
     public void delete(Student_Class student_class)
     {
         new DeleteStudent_ClassAsyncTask(student_classDao).execute(student_class);
-    }
-
-    public LiveData<List<Student_Class>> getAllStudent_ClassesClasses() {
-        return allStudent_Classes;
     }
 
 }

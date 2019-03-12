@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.StudentsAdapter;
+import database.dao.Student_ClassDao;
 import database.entities.Student;
+import database.entities.Student_Class;
 import viewmodel.StudentViewModel;
 
 public class ResultListOfSearchStudent extends AppCompatActivity {
@@ -34,6 +36,7 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
     private static final String TAG = "ResultListOfSearchActivity";
     public final static String EXTRA_MESSAGE = "com.example.schoolmanagement.MESSAGE";
     private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -43,4 +43,8 @@ public class ClassRepository {
         return allClasses;
     }
 
+    public LiveData<List<Class>> getAllClassesByFKStudent(int FKStudent){
+        return classDao.getAllClassByFKStudent(FKStudent);
+    }
+
 }

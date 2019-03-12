@@ -1,5 +1,6 @@
 package com.example.schoolmanagement;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -7,22 +8,32 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.ClassByFKStudentAdapter;
+import database.entities.Class;
 import database.entities.Student;
+import viewmodel.ClassViewModel;
 import viewmodel.StudentViewModel;
 
 public class ModifyStudent extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private int IdStudent;
+    //ViewModel
+    private ClassViewModel classViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,25 @@ public class ModifyStudent extends AppCompatActivity {
         editBirthdate.setText(thisStudent.getBirthdate());
         //On retrouve aussi l'ID de cet étudiant
         IdStudent = thisStudent.getPK_ID_Student();
+
+        //Get the listView
+        ListView listViewStudentByFKStudent = (ListView)findViewById(R.id.listforModifyStudentByFKStudent);
+
+        // Construct the data source
+        final ArrayList<Class> arrayOfClasses = new ArrayList<Class>();
+
+        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(ModifyStudent.this, arrayOfClasses);
+
+        listViewStudentByFKStudent.setAdapter(adapter);
+
+        classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
+        classViewModel.getAllClass().observe(this, new Observer<List<Class>>() {
+            @Override
+            public void onChanged(@Nullable List<Class> classes) {
+                adapter.addAll(classes);
+            }
+        });
+
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
