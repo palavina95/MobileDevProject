@@ -26,4 +26,7 @@ public interface Student_ClassDao {
     @Query("SELECT * FROM `student/class_table`")
     LiveData<List<Student_Class>> getAllStudent_Class();
 
+    @Query("SELECT COUNT(*) FROM `student/class_table` WHERE FK_Student = :FKStudent AND FK_Class = :FKClass")
+    LiveData<Integer> verifyExistance(int FKStudent, int FKClass);
+
 }

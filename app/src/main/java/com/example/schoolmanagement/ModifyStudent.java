@@ -27,6 +27,7 @@ import database.entities.Class;
 import database.entities.Student;
 import viewmodel.ClassViewModel;
 import viewmodel.StudentViewModel;
+import viewmodel.Student_ClassViewModel;
 
 public class ModifyStudent extends AppCompatActivity {
 
@@ -34,6 +35,7 @@ public class ModifyStudent extends AppCompatActivity {
     private int IdStudent;
     //ViewModel
     private ClassViewModel classViewModel;
+    private Student_ClassViewModel studentClassViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,9 @@ public class ModifyStudent extends AppCompatActivity {
         // Construct the data source
         final ArrayList<Class> arrayOfClasses = new ArrayList<Class>();
 
-        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(ModifyStudent.this, arrayOfClasses);
+        studentClassViewModel = ViewModelProviders.of(this).get(Student_ClassViewModel.class);
+
+        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(ModifyStudent.this, arrayOfClasses,IdStudent,studentClassViewModel);
 
         listViewStudentByFKStudent.setAdapter(adapter);
 
@@ -81,6 +85,7 @@ public class ModifyStudent extends AppCompatActivity {
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
+
 
     public void modifyStudent(View view) {
         EditText textFirstname = (EditText)findViewById(R.id.text_firtname_student);

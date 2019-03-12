@@ -2,20 +2,14 @@ package database.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.os.AsyncTask;
 
 import java.util.List;
 
 import database.SchoolManagementDatabase;
-import database.async._class.DeleteClassAsyncTask;
-import database.async._class.InsertClassAsyncTask;
-import database.async._class.UpdateClassAsyncTask;
 import database.async.student_class.DeleteStudent_ClassAsyncTask;
 import database.async.student_class.InsertStudent_ClassAsyncTask;
 import database.async.student_class.UpdateStudent_ClassAsyncTask;
-import database.dao.ClassDao;
 import database.dao.Student_ClassDao;
-import database.entities.Class;
 import database.entities.Student_Class;
 
 public class Student_ClassRepository {
@@ -41,6 +35,12 @@ public class Student_ClassRepository {
     public void delete(Student_Class student_class)
     {
         new DeleteStudent_ClassAsyncTask(student_classDao).execute(student_class);
+    }
+
+    public LiveData<Integer> verifyExistance(int FKStudent, int FKClass)
+    {
+        //return student_classDao.verifyExistance(FKStudent,FKClass);
+        return student_classDao.verifyExistance(FKStudent, FKClass);
     }
 
 }

@@ -22,20 +22,20 @@ public class Student_ClassViewModel extends AndroidViewModel {
         repositoryC = new Student_ClassRepository(application);
     }
 
-    public void insert(Student_Class studentClass)
-    {
+    public void insert(Student_Class studentClass) {
         repositoryC.insert(studentClass);
     }
 
-    public void update(Student_Class studentClass)
-    {
+    public void update(Student_Class studentClass) {
         repositoryC.update(studentClass);
     }
 
-    public void delete(Student_Class studentClass)
-    {
+    public void delete(Student_Class studentClass) {
         repositoryC.delete(studentClass);
     }
 
+    public LiveData<Integer> verifyExistance(int FKStudent, int FKClass) {
+        return repositoryC.verifyExistance(FKStudent, FKClass);
+    }
 
 }

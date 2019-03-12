@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -62,7 +63,7 @@ public class DisplayStudent extends AppCompatActivity {
         // Construct the data source
         final ArrayList<Class> arrayOfClasses = new ArrayList<Class>();
 
-        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(DisplayStudent.this, arrayOfClasses);
+        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(DisplayStudent.this, arrayOfClasses,thisStudent.getPK_ID_Student());
 
         listViewStudentByFKStudent.setAdapter(adapter);
 
