@@ -70,7 +70,7 @@ public class ModifyStudent extends AppCompatActivity {
 
         studentClassViewModel = ViewModelProviders.of(this).get(Student_ClassViewModel.class);
 
-        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(ModifyStudent.this, arrayOfClasses,IdStudent,studentClassViewModel);
+        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(ModifyStudent.this, arrayOfClasses,IdStudent,studentClassViewModel,this);
 
         listViewStudentByFKStudent.setAdapter(adapter);
 
@@ -84,6 +84,10 @@ public class ModifyStudent extends AppCompatActivity {
 
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    public ModifyStudent getActivity(){
+        return this;
     }
 
 

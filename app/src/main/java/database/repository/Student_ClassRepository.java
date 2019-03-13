@@ -39,7 +39,6 @@ public class Student_ClassRepository {
 
     public LiveData<Integer> verifyExistance(int FKStudent, int FKClass)
     {
-        //return student_classDao.verifyExistance(FKStudent,FKClass);
         return student_classDao.verifyExistance(FKStudent, FKClass);
     }
 
