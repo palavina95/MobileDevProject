@@ -43,10 +43,13 @@ public class SearchStudent extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.search_text_student);
 
+        //Sauvegarde de la recherche dans sharedpreferences
         String valeurRecherche = editText.getText().toString();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("valeurRecherche",valeurRecherche);
+        editor.commit();
 
         Intent intent = new Intent(this, ResultListOfSearchStudent.class);
-        intent.putExtra("valeurRecherche",valeurRecherche);
         startActivity(intent);
     }
 
