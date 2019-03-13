@@ -21,7 +21,6 @@ public class StudentRepository {
     public StudentRepository(Application application){
         SchoolManagementDatabase database = SchoolManagementDatabase.getInstance(application);
         studentDao = database.studentDao();
-        allStudents = studentDao.getAllStudent();
     }
 
     public void insert(Student student)
@@ -39,8 +38,8 @@ public class StudentRepository {
         new DeleteStudentAsyncTask(studentDao).execute(student);
     }
 
-    public LiveData<List<Student>> getAllStudents() {
-        return allStudents;
+    public LiveData<List<Student>> getAllStudents(String valeurRecherche) {
+        return studentDao.getAllStudent(valeurRecherche);
     }
 
 }

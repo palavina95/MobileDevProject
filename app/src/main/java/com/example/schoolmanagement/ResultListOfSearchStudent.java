@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -59,8 +60,17 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        //Mise en forme valeurRecherche
+        String valeurRecherche = (String) getIntent().getStringExtra("valeurRecherche");
+        StringBuilder sb = new StringBuilder(valeurRecherche);
+        sb.insert(0, "%");
+        sb.append("%");
+        valeurRecherche =  sb.toString();
+
+        Toast.makeText(ResultListOfSearchStudent.this, valeurRecherche, Toast.LENGTH_LONG).show();
+
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
-        studentViewModel.getAllStudents().observe(this, new Observer<List<Student>>() {
+        studentViewModel.getAllStudents(valeurRecherche).observe(this, new Observer<List<Student>>() {
                     @Override
                     public void onChanged(@Nullable List<Student> students) {
                         adapter.addAll(students);

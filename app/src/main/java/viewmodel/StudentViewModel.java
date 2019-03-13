@@ -18,7 +18,6 @@ public class StudentViewModel extends AndroidViewModel {
     public StudentViewModel(@NonNull Application application) {
         super(application);
         repository = new StudentRepository(application);
-        allStudents = repository.getAllStudents();
     }
 
     public void insert(Student student){
@@ -33,7 +32,7 @@ public class StudentViewModel extends AndroidViewModel {
         repository.delete(student);
     }
 
-    public LiveData<List<Student>> getAllStudents() {
-        return allStudents;
+    public LiveData<List<Student>> getAllStudents(String valeurRecherche) {
+        return repository.getAllStudents(valeurRecherche);
     }
 }

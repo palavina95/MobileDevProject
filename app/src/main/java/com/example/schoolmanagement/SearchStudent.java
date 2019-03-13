@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 public class SearchStudent extends AppCompatActivity {
 
@@ -39,7 +40,13 @@ public class SearchStudent extends AppCompatActivity {
     }
 
     public void searchStudentButton(View view){
+
+        EditText editText = (EditText) findViewById(R.id.search_text_student);
+
+        String valeurRecherche = editText.getText().toString();
+
         Intent intent = new Intent(this, ResultListOfSearchStudent.class);
+        intent.putExtra("valeurRecherche",valeurRecherche);
         startActivity(intent);
     }
 
