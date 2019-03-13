@@ -51,7 +51,7 @@ public class DisplayStudent extends AppCompatActivity {
 
         //Create the text views
         TextView textViewFirstname = findViewById(R.id.d_firstname);
-        textViewFirstname.setText(thisStudent.getFirstname() + " id: "+thisStudent.getPK_ID_Student());
+        textViewFirstname.setText(thisStudent.getFirstname());
         TextView textViewLastname = findViewById(R.id.d_lastname);
         textViewLastname.setText(thisStudent.getLastname());
         TextView textViewBirthdate = findViewById(R.id.d_birthdate);

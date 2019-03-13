@@ -18,7 +18,7 @@ import database.entities.Class;
 import database.entities.Student;
 import database.entities.Student_Class;
 
-@Database(entities = {Student.class, Class.class, Student_Class.class}, version = 1,exportSchema = false)
+@Database(entities = {Student.class, Class.class, Student_Class.class}, version = 2,exportSchema = false)
 public abstract class SchoolManagementDatabase extends RoomDatabase {
 
     private static SchoolManagementDatabase instance;
@@ -61,14 +61,6 @@ public abstract class SchoolManagementDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            studentDao.insert(new Student("Vivian1","Bridy1","visage1.jpg","24-11-1995"));
-            studentDao.insert(new Student("Vivian2","Bridy2","visage2.jpg","25-11-1995"));
-            studentDao.insert(new Student("Vivian3","Bridy3","visage3.jpg","26-11-1995"));
-
-            classDao.insert(new Class("Marketing", 308, "Bellevue", "Nathalie", "08:30", "10:00"));
-            classDao.insert(new Class("Maths", 308, "Bellevue", "Nathalie", "08:30", "10:00"));
-            classDao.insert(new Class("Anglais", 308, "Bellevue", "Nathalie", "08:30", "10:00"));
-
             return null;
         }
     }

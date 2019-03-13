@@ -59,7 +59,7 @@ public class CreateStudent extends AppCompatActivity {
             return;
         }else{
             //On crée un étudiant
-            Student thisStudent = new Student(firstname,lastname,"visage1.jpg",birthdate);
+            Student thisStudent = new Student(firstname,lastname,birthdate);
             StudentViewModel studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
             //On l'insert dans la base de donnée
             studentViewModel.insert(thisStudent);

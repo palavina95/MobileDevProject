@@ -35,7 +35,7 @@ public class DisplayClass extends AppCompatActivity {
 
         //Create the text views
         TextView textViewName = findViewById(R.id.d_name_class);
-        textViewName.setText(thisClass.getName() +" id : "+thisClass.getPK_ID_Class());
+        textViewName.setText(thisClass.getName());
         TextView textViewRoom = findViewById(R.id.d_room_class);
         textViewRoom.setText(String.valueOf(thisClass.getRoomNumber()));
         TextView textViewLocation = findViewById(R.id.d_location_class);

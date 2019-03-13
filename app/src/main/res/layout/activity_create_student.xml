@@ -51,17 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_lastname_student" />
 
-    <TextView
-        android:id="@+id/tv_picture_student"
-        android:layout_width="131dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="13dp"
-        android:text="Picture"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_birthdate_student" />
-
 
     <EditText
         android:id="@+id/enter_firstname"

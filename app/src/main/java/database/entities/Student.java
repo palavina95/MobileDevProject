@@ -16,14 +16,11 @@ public class Student implements Serializable {
 
     private String Lastname;
 
-    private String Picture;
-
     private String Birthdate;
 
-    public Student(String Firstname, String Lastname, String Picture, String Birthdate) {
+    public Student(String Firstname, String Lastname, String Birthdate) {
         this.Firstname = Firstname;
         this.Lastname = Lastname;
-        this.Picture = Picture;
         this.Birthdate = Birthdate;
     }
 
@@ -41,10 +38,6 @@ public class Student implements Serializable {
 
     public String getLastname() {
         return Lastname;
-    }
-
-    public String getPicture() {
-        return Picture;
     }
 
     public String getBirthdate() {

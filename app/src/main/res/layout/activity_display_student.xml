@@ -41,17 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvd_lastname_student" />
 
-    <TextView
-        android:id="@+id/tvd_picture_student"
-        android:layout_width="131dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Picture"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvd_birthdate_student" />
-
 
     <TextView
         android:id="@+id/d_firstname"
@@ -96,12 +85,12 @@
         android:id="@+id/listViewStudentByFKStudent"
 
         android:layout_width="wrap_content"
-        android:layout_height="495dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="460dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvd_picture_student"
+        app:layout_constraintTop_toBottomOf="@+id/tvd_birthdate_student"
         tools:listitem="@layout/class_by_fk_student_item" />
 
 

@@ -104,7 +104,7 @@ public class ModifyStudent extends AppCompatActivity {
             return;
         }else{
             //On crée un étudiant
-            Student thisStudent = new Student(firstname,lastname,"visage1.jpg",birthdate);
+            Student thisStudent = new Student(firstname,lastname,birthdate);
             StudentViewModel studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
             //On l'insert dans la base de donnée
             thisStudent.setPK_ID_Student(IdStudent);    //Pour pouvoir retrouver le bon étudiant
