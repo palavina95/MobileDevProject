@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="404dp"
-        android:layout_height="42dp"
+        android:layout_height="50dp"
         android:layout_marginStart="3dp"
         android:padding="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="267dp"
             android:layout_marginLeft="4dp"
-            android:layout_toEndOf="@id/text_view_name_class"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Room"

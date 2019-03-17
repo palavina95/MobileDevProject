@@ -57,7 +57,7 @@ public class ResultListOfSearchClass extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //Mise en forme valeurRecherche
-        String valeurRecherche = sharedPreferences.getString("valeurRecherche","");
+        String valeurRecherche = sharedPreferences.getString("valeurRechercheClass","");
         StringBuilder sb = new StringBuilder(valeurRecherche);
         sb.insert(0, "%");
         sb.append("%");

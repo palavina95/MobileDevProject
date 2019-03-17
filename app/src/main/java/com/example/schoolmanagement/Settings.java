@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -102,7 +103,6 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
                 }
             }
         });
-
 
         seekBarRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -258,6 +258,23 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
             StatusBarClr();
         }
     }
+
+    public void changePassword(){
+        EditText oldMdpEt = (EditText) findViewById(R.id.oldmdp);
+        EditText newMdpEt = (EditText) findViewById(R.id.newmdp);
+
+        String oldMdp = oldMdpEt.getText().toString();
+        String newMdp = newMdpEt.getText().toString();
+
+        if(oldMdp.equals(sharedPreferences.getString("mdp", oldMdp))){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            //editor.remove("mdp");
+            editor.putString("mdp", newMdp);
+        }else{
+            System.out.println("FAUX");
+        }
+    }
+
 
 
 }

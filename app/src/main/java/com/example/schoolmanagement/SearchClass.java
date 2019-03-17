@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 public class SearchClass extends AppCompatActivity {
 
@@ -38,7 +39,16 @@ public class SearchClass extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void searchClassB(View view){
+    public void searchClassButton(View view){
+
+        EditText editText = (EditText) findViewById(R.id.search_text_class);
+
+        //Sauvegarde de la recherche dans sharedpreferences
+        String valeurRecherche = editText.getText().toString();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("valeurRechercheClass",valeurRecherche);
+        editor.commit();
+
         Intent intent = new Intent(this, ResultListOfSearchClass.class);
         startActivity(intent);
     }
