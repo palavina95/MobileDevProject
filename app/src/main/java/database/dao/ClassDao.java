@@ -30,4 +30,7 @@ public interface ClassDao {
     @Query("SELECT * FROM class_table WHERE PK_ID_Class IN (SELECT FK_Class FROM `student/class_table` WHERE FK_Student = :FKStudent) ORDER BY RoomNumber")
     LiveData<List<Class>> getAllClassByFKStudent(int FKStudent);
 
+    @Query("SELECT * FROM class_table WHERE Name LIKE :valeurRecherche ORDER BY Name")
+    LiveData<List<Class>> getAllClassSearch(String valeurRecherche);
+
 }

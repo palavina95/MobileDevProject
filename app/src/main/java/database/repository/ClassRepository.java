@@ -43,6 +43,10 @@ public class ClassRepository {
         return allClasses;
     }
 
+    public LiveData<List<Class>> getClassSearch(String valeurRecherche){
+        return classDao.getAllClassSearch(valeurRecherche);
+    }
+
     public LiveData<List<Class>> getAllClassesByFKStudent(int FKStudent){
         return classDao.getAllClassByFKStudent(FKStudent);
     }

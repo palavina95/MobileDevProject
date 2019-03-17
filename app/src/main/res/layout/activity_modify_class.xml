@@ -7,7 +7,7 @@
     tools:context=".ModifyClass">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonSaveClass"
         android:layout_width="1080px"
         android:layout_height="120dp"
         android:layout_marginTop="8dp"
@@ -159,5 +159,16 @@
         android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/endtime_class"
         app:layout_constraintTop_toBottomOf="@+id/text_begintime_class" />
+
+    <ListView
+        android:id="@+id/listforModifyClassByFkStudent"
+
+        android:layout_width="wrap_content"
+        android:layout_height="187dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSaveClass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endtime_class"
+        tools:listitem="@layout/student_by_fkstudent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -11,6 +11,7 @@ import database.async.student.DeleteStudentAsyncTask;
 import database.async.student.InsertStudentAsyncTask;
 import database.async.student.UpdateStudentAsyncTask;
 import database.dao.StudentDao;
+import database.entities.Class;
 import database.entities.Student;
 
 public class StudentRepository {
@@ -21,6 +22,7 @@ public class StudentRepository {
     public StudentRepository(Application application){
         SchoolManagementDatabase database = SchoolManagementDatabase.getInstance(application);
         studentDao = database.studentDao();
+        allStudents = studentDao.getAllStudentSimple();
     }
 
     public void insert(Student student)
@@ -40,6 +42,14 @@ public class StudentRepository {
 
     public LiveData<List<Student>> getAllStudents(String valeurRecherche) {
         return studentDao.getAllStudent(valeurRecherche);
+    }
+
+    public LiveData<List<Student>> getAllStudentsSimple(){
+        return allStudents;
+    }
+
+    public LiveData<List<Student>> getAllStudentsByFKClass (int FKClass) {
+        return studentDao.getAllStudentByFKClass(FKClass);
     }
 
 }

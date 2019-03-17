@@ -44,6 +44,10 @@ public class ClassViewModel extends AndroidViewModel {
         return allClass;
     }
 
+    public LiveData<List<Class>> getClassSearch(String valeurRecherche){
+        return repositoryC.getClassSearch(valeurRecherche);
+    }
+
     public LiveData<List<Class>> getAllClassByFKStudent(int FKStudent){
 
         /*Juste pour maintenant (une seule fois pour commencer

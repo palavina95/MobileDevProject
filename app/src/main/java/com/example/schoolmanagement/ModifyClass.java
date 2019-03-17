@@ -1,5 +1,6 @@
 package com.example.schoolmanagement;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -7,22 +8,34 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.StudentByFKClassAdapter;
 import database.entities.Class;
+import database.entities.Student;
 import viewmodel.ClassViewModel;
+import viewmodel.StudentViewModel;
+import viewmodel.Student_ClassViewModel;
 
 public class ModifyClass extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private int idClass;
+    //Viewmodel
+    private StudentViewModel studentViewModel;
+    private Student_ClassViewModel studentClassViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +67,25 @@ public class ModifyClass extends AppCompatActivity {
         textViewEndTime.setText(thisClass.getEndingTime());
 
         idClass = thisClass.getPK_ID_Class();
+
+        ListView listViewClassByFKClass = (ListView)findViewById(R.id.listforModifyClassByFkStudent);
+
+        final ArrayList<Student> arrayOfStudent = new ArrayList<Student>();
+
+        studentClassViewModel = ViewModelProviders.of(this).get(Student_ClassViewModel.class);
+
+        final StudentByFKClassAdapter adapterC = new StudentByFKClassAdapter(ModifyClass.this, arrayOfStudent, idClass, studentClassViewModel, this);
+
+        listViewClassByFKClass.setAdapter(adapterC);
+
+        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        studentViewModel.getAllStudentsSimple().observe(this, new Observer<List<Student>>() {
+            @Override
+            public void onChanged(@Nullable List<Student> students) {
+                adapterC.addAll(students);
+            }
+        });
+
 
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

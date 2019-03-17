@@ -56,8 +56,15 @@ public class ResultListOfSearchClass extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        //Mise en forme valeurRecherche
+        String valeurRecherche = sharedPreferences.getString("valeurRecherche","");
+        StringBuilder sb = new StringBuilder(valeurRecherche);
+        sb.insert(0, "%");
+        sb.append("%");
+        valeurRecherche =  sb.toString();
+
         classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
-        classViewModel.getAllClass().observe(this, new Observer<List<Class>>() {
+        classViewModel.getClassSearch(valeurRecherche).observe(this, new Observer<List<Class>>() {
             @Override
             public void onChanged(@Nullable List<Class> classes) {
                 adapter.addAll(classes);
