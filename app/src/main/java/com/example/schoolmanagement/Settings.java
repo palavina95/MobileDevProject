@@ -13,6 +13,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -239,19 +240,22 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
         }
     }
 
-    public void changePassword(){
+    public void changePassword(View view){
         EditText oldMdpEt = (EditText) findViewById(R.id.oldmdp);
         EditText newMdpEt = (EditText) findViewById(R.id.newmdp);
 
         String oldMdp = oldMdpEt.getText().toString();
         String newMdp = newMdpEt.getText().toString();
 
-        if(oldMdp.equals(sharedPreferences.getString("mdp", oldMdp))){
+        sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
+
+        if(oldMdp.equals(sharedPreferences.getString("mdp", ""))){
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            //editor.remove("mdp");
             editor.putString("mdp", newMdp);
+            editor.commit();
+            Toast.makeText(Settings.this, "Password changer successfully", Toast.LENGTH_LONG).show();
         }else{
-            System.out.println("FAUX");
+            Toast.makeText(Settings.this, "Wrong old password", Toast.LENGTH_LONG).show();
         }
     }
 
