@@ -2,8 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,56 +16,60 @@
             android:layout_height="27dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:text="@string/mailHES"
             android:clickable="true"
+            android:text="@string/mailHES"
             app:layout_constraintStart_toEndOf="@+id/ecole_text_mail"
             app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
         <TextView
             android:id="@+id/ecole_name"
-            android:layout_width="289dp"
-            android:layout_height="27dp"
-            android:layout_marginStart="49dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="73dp"
-            android:text="@string/adresseHES1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ecole_npa" />
-
-        <TextView
-            android:id="@+id/ecole_adresse"
-            android:layout_width="289dp"
+            android:layout_width="166dp"
             android:layout_height="27dp"
             android:layout_marginStart="49dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="73dp"
             android:text="@string/adresseHES2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecole_npa" />
+
+        <TextView
+            android:id="@+id/ecole_adresse"
+            android:layout_width="166dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/adresseHES3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ecole_name" />
 
         <TextView
             android:id="@+id/ecole_case_postale"
-            android:layout_width="289dp"
+            android:layout_width="166dp"
             android:layout_height="27dp"
             android:layout_marginStart="49dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="73dp"
-            android:text="@string/adresseHES3"
+            android:text="@string/adresseHES4"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ecole_adresse" />
 
         <TextView
             android:id="@+id/ecole_npa"
-            android:layout_width="289dp"
+            android:layout_width="166dp"
             android:layout_height="27dp"
             android:layout_marginStart="49dp"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="73dp"
-            android:text="@string/adresseHES4"
+            android:text="@string/adresseHES1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,8 +91,8 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="300dp"
             android:layout_marginEnd="30dp"
-            android:text="@string/telHES"
             android:clickable="true"
+            android:text="@string/telHES"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ecole_text_phone"
             app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale" />
@@ -112,6 +118,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ecole_case_postale"
             tools:context=".MapActivity" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="161dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="84dp"
+            android:background="@color/backgroundLogo"
+            app:layout_constraintStart_toEndOf="@+id/ecole_adresse"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_hes_so_valais_2019" />
 
 
     </android.support.constraint.ConstraintLayout>

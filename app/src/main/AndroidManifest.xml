@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".InfosApp"
-            android:label="Infos School Management" >
+            android:label="Infos School Management">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Settings" />
@@ -133,8 +133,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MainActivity"
-                    android:theme="@style/AppThemeWithoutActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppThemeWithoutActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

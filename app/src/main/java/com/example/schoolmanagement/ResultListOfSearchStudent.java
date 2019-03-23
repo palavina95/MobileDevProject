@@ -69,11 +69,11 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
 
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         studentViewModel.getAllStudents(valeurRecherche).observe(this, new Observer<List<Student>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Student> students) {
-                        adapter.addAll(students);
-                    }
-                });
+            @Override
+            public void onChanged(@Nullable List<Student> students) {
+                adapter.addAll(students);
+            }
+        });
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 

@@ -109,7 +109,7 @@ public class InfosApp extends AppCompatActivity {
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
                             //On pose la camera sur l'HES de Sierre
-                            moveCamera(new LatLng(46.292854, 7.536262), DEFAULT_ZOOM,"FUCKING HES-SO BABY");
+                            moveCamera(new LatLng(46.292854, 7.536262), DEFAULT_ZOOM,"HES-SO Sierre");
 
                         } else {
                             Log.d(TAG, "onComplete: current location is NULL");
@@ -137,7 +137,6 @@ public class InfosApp extends AppCompatActivity {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                Toast.makeText(InfosApp.this, "Map is ready", Toast.LENGTH_SHORT).show();
                 mMap = googleMap;
 
                 if (mLocationPermissionGranted) {

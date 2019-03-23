@@ -72,12 +72,6 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        /*Code pour changer couleur actionBar dynamic */
-        idForRadioGroup=(RadioGroup)findViewById(R.id.idForRadioGroup);
-        RadioButton rButton = (RadioButton) idForRadioGroup.getChildAt(0);
-        rButton.setChecked(true);
-
-
         sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
@@ -89,20 +83,6 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
         seekBarGreen=(SeekBar)findViewById(R.id.seekBarGreen);
         seekBarBlue=(SeekBar)findViewById(R.id.seekBarBlue);
         getClr();
-
-
-        idForRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId){
-                    case R.id.radio0:
-                        // do operations specific to this selection
-                        bar=true;
-                        getClr();
-                        break;
-                }
-            }
-        });
 
         seekBarRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

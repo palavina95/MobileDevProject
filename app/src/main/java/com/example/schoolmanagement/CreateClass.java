@@ -57,7 +57,8 @@ public class CreateClass extends AppCompatActivity {
     }
 
     public void createMyClass(View view) {
-        StringBuffer result = new StringBuffer();
+
+
         EditText name = (EditText) findViewById(R.id.name_class);
         String sName = name.getText().toString();
         EditText room = (EditText) findViewById(R.id.room_class);
@@ -70,19 +71,12 @@ public class CreateClass extends AppCompatActivity {
         String sBeginTime = beginTime.getText().toString();
         EditText endTime = (EditText) findViewById(R.id.endTime_class);
         String sEndTime = endTime.getText().toString();
-
-        result.append("Name: " + name.getText().toString() + "\n");
-        result.append("Room number: " + room.getText().toString() + "\n");
-        result.append("Location: " + location.getText().toString() + "\n");
-        result.append("Teacher: " + teacher.getText().toString() + "\n");
-        result.append("Beginning Time: " + beginTime.getText().toString() + "\n");
-        result.append("Ending Time: " + endTime.getText().toString() + "\n");
-
-        // TODO Auto-generated method stub
-        Toast.makeText(CreateClass.this, result, Toast.LENGTH_LONG).show();
+        //On crée une classe
+        Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
 
         //Notification intent onclick creation
         Intent clickIntent = new Intent(this, DisplayStudent.class);
+        clickIntent.putExtra("MyClass", thisClass);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, clickIntent, 0);
 
 
@@ -105,8 +99,7 @@ public class CreateClass extends AppCompatActivity {
             Toast.makeText(CreateClass.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
             return;
         }else{
-            //On crée une classe
-            Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
+
             ClassViewModel classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
             //On l'insert dans la base de donnée
             classViewModel.insert(thisClass);
