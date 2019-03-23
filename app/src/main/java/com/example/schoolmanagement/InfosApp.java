@@ -33,19 +33,18 @@ import com.google.android.gms.tasks.Task;
 
 public class InfosApp extends AppCompatActivity {
 
-    private SharedPreferences sharedPreferences;
-
+    //Final variable
     private static final String TAG = "MapActivity";
-
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
 
-    //vars
+    //Variable
     private Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,7 @@ public class InfosApp extends AppCompatActivity {
 
         getLocationPermission();
 
-        //Code pour cliquer sur le numéro de téléphone et le composer directement
+        //Click on phone number and then dial it
         final TextView phoneNumber = (TextView) findViewById(R.id.phoneNumber);
         phoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +74,7 @@ public class InfosApp extends AppCompatActivity {
             }
         });
 
-        //Code pour cliquer sur le mail et envoyer un mail
+        //Click on mail and then send a mail
         final TextView mail = (TextView) findViewById(R.id.mail);
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +85,7 @@ public class InfosApp extends AppCompatActivity {
             }
         });
 
-        //Bloque on vertical
+        //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,20 +34,22 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SharedPreferences sharedPreferences;
-
+    //Final variable
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String SITE_KEY = "6LeogJkUAAAAAG8ZY-oJlsRpFbsxMKL-pv_irl8s";
     private static final String SITE_SECRET_KEY = "6LeogJkUAAAAAB6l9QIlc_nEqZabqATuaGP5rk5n";
+
+    //Variable
     private String userResponse;
     private boolean successCaptcha = false;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Bloque on vertical
+        //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -119,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void logUser(View view){
 
-        //Récupération des données utilisateurs
+        //Get the user information
         EditText loginEt = (EditText) findViewById(R.id.username);
         EditText mdpEt = (EditText) findViewById(R.id.mdp);
-        //Transformation en String
+        //Transform to string
         String login = loginEt.getText().toString();
         String mdp = mdpEt.getText().toString();
 

@@ -13,7 +13,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -24,9 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.StudentsAdapter;
-import database.dao.Student_ClassDao;
 import database.entities.Student;
-import database.entities.Student_Class;
 import viewmodel.StudentViewModel;
 
 public class ResultListOfSearchStudent extends AppCompatActivity {
@@ -34,10 +31,8 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
     //ViewModel
     private StudentViewModel studentViewModel;
 
-    private static final String TAG = "ResultListOfSearchActivity";
-    public final static String EXTRA_MESSAGE = "com.example.schoolmanagement.MESSAGE";
+    //Variable
     private SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +55,7 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        //Mise en forme valeurRecherche
+        //Handle research value
         String valeurRecherche = sharedPreferences.getString("valeurRecherche","");
         StringBuilder sb = new StringBuilder(valeurRecherche);
         sb.insert(0, "%");
@@ -145,7 +140,7 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
             }
         });
 
-        //Bloque on vertical
+        //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
     }

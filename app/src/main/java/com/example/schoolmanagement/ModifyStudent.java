@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,8 +30,10 @@ import viewmodel.Student_ClassViewModel;
 
 public class ModifyStudent extends AppCompatActivity {
 
+    //Variable
     private SharedPreferences sharedPreferences;
     private int IdStudent;
+
     //ViewModel
     private ClassViewModel classViewModel;
     private Student_ClassViewModel studentClassViewModel;
@@ -59,13 +60,14 @@ public class ModifyStudent extends AppCompatActivity {
         editLastname.setText(thisStudent.getLastname());
         EditText editBirthdate = findViewById(R.id.text_birthdate_student);
         editBirthdate.setText(thisStudent.getBirthdate());
-        //On retrouve aussi l'ID de cet étudiant
+
+        //We have also the ID of the student
         IdStudent = thisStudent.getPK_ID_Student();
 
         //Get the listView
         ListView listViewStudentByFKStudent = (ListView)findViewById(R.id.listforModifyStudentByFKStudent);
 
-        // Construct the data source
+        //Construct the data source
         final ArrayList<Class> arrayOfClasses = new ArrayList<Class>();
 
         studentClassViewModel = ViewModelProviders.of(this).get(Student_ClassViewModel.class);
@@ -82,7 +84,7 @@ public class ModifyStudent extends AppCompatActivity {
             }
         });
 
-        //Bloque on vertical
+        //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -123,7 +125,6 @@ public class ModifyStudent extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

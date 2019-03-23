@@ -31,8 +31,10 @@ import viewmodel.Student_ClassViewModel;
 
 public class ModifyClass extends AppCompatActivity {
 
+    //Variable
     private SharedPreferences sharedPreferences;
     private int idClass;
+
     //Viewmodel
     private StudentViewModel studentViewModel;
     private Student_ClassViewModel studentClassViewModel;
@@ -86,8 +88,7 @@ public class ModifyClass extends AppCompatActivity {
             }
         });
 
-
-        //Bloque on vertical
+        //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -130,7 +131,6 @@ public class ModifyClass extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

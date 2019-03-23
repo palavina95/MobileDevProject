@@ -19,7 +19,6 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +28,10 @@ import viewmodel.ClassViewModel;
 
 public class ResultListOfSearchClass extends AppCompatActivity {
 
+    //ViewModel
     private ClassViewModel classViewModel;
 
-    private static final String TAG = "ResultListOfSearchActivity";
-    public final static String EXTRA_MESSAGE = "com.example.schoolmanagement.MESSAGE";
+    //Variable
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -56,7 +55,7 @@ public class ResultListOfSearchClass extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        //Mise en forme valeurRecherche
+        //Handle research value
         String valeurRecherche = sharedPreferences.getString("valeurRechercheClass","");
         StringBuilder sb = new StringBuilder(valeurRecherche);
         sb.insert(0, "%");
@@ -141,7 +140,7 @@ public class ResultListOfSearchClass extends AppCompatActivity {
             }
         });
 
-        //Bloque on vertical
+        //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
     }

@@ -15,6 +15,7 @@ import android.widget.EditText;
 
 public class SearchStudent extends AppCompatActivity {
 
+    //Variable
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -29,7 +30,7 @@ public class SearchStudent extends AppCompatActivity {
 
         setContentView(R.layout.activity_search_student);
 
-        //Bloque on vertical
+        //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -43,7 +44,7 @@ public class SearchStudent extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.search_text_student);
 
-        //Sauvegarde de la recherche dans sharedpreferences
+        //Save the value of research
         String valeurRecherche = editText.getText().toString();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("valeurRecherche",valeurRecherche);
@@ -58,7 +59,7 @@ public class SearchStudent extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
+    //To add whenever you want to access the settings in the action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

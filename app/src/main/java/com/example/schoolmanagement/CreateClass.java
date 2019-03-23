@@ -31,6 +31,7 @@ public class CreateClass extends AppCompatActivity {
     public static final String CHANNEL_ID_1 = "New class...";
     private NotificationManagerCompat notificationManagerCompat;
     private SharedPreferences sharedPreferences;
+    public static final int CPT_NOTIFICATION = 0;
 
 
     @Override
@@ -75,7 +76,7 @@ public class CreateClass extends AppCompatActivity {
         Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
 
         //Notification intent onclick creation
-        Intent clickIntent = new Intent(this, DisplayStudent.class);
+        Intent clickIntent = new Intent(this, DisplayClass.class);
         clickIntent.putExtra("MyClass", thisClass);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, clickIntent, 0);
 
@@ -83,13 +84,14 @@ public class CreateClass extends AppCompatActivity {
         //Notification creation
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID_1)
                 .setSmallIcon(R.drawable.ic_new_releases_black_24dp)
-                .setContentTitle(getString(R.string.channelName))
+                .setContentTitle(getString(R.string.channelName)+" "+sName)
                 .setContentText(getString(R.string.channelDescription))
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(getString(R.string.channelDescription)))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .addAction(R.drawable.ic_touch_app_black_24dp, "Click to see it", pendingIntent );
+
 
         createNotificationChannel();
 
@@ -114,7 +116,7 @@ public class CreateClass extends AppCompatActivity {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
         // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(1, builder.build());
+        notificationManager.notify(CPT_NOTIFICATION+1, builder.build());
 
 
     }
