@@ -2,7 +2,6 @@ package com.example.schoolmanagement;
 
 import android.app.Application;
 import android.content.Context;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -28,8 +27,6 @@ public class AppController extends Application {
 
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
-            // getApplicationContext() is key, it keeps you from leaking the
-            // Activity or BroadcastReceiver if someone passes one in.
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }
         return mRequestQueue;

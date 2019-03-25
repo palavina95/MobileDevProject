@@ -10,10 +10,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
-
 import database.entities.Class;
 import viewmodel.ClassViewModel;
 
@@ -38,12 +36,12 @@ public class DeleteClass extends AppCompatActivity {
             @Override
             public void onStateChange(boolean active) {
 
-                //On crée une classe
+                //Create class
                 Class thisClass = (Class) getIntent().getSerializableExtra("MyClass");
                 ClassViewModel classViewModel = ViewModelProviders.of(DeleteClass.this).get(ClassViewModel.class);
-                //Afficher un toast
+                //Display a toast
                 Toast.makeText(DeleteClass.this, "DELETION CONFIRMED !", Toast.LENGTH_SHORT).show();
-                //On l'insert dans la base de donnée
+                //Insert in database
                 classViewModel.delete(thisClass);
                 Intent intent = new Intent(DeleteClass.this, ResultListOfSearchClass.class);
                 startActivity(intent);
@@ -51,11 +49,12 @@ public class DeleteClass extends AppCompatActivity {
             }
         });
 
-        //Bloque on vertical
+        //Block on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
     }
 
+    //ACtionbar color
     public void ActionBarClr(int r,int g,int b){
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.rgb(r

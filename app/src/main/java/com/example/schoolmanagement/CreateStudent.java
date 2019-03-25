@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import database.entities.Student;
 import viewmodel.StudentViewModel;
 
@@ -36,7 +35,7 @@ public class CreateStudent extends AppCompatActivity {
 
         setContentView(R.layout.activity_create_student);
 
-        //Bloque on vertical
+        //Block on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -58,20 +57,20 @@ public class CreateStudent extends AppCompatActivity {
             Toast.makeText(CreateStudent.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
             return;
         }else{
-            //On crée un étudiant
+            //Create student
             Student thisStudent = new Student(firstname,lastname,birthdate);
             StudentViewModel studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
-            //On l'insert dans la base de donnée
+            //Insert database
             studentViewModel.insert(thisStudent);
-            //On affiche un toast
+            //Display a toast
             Toast.makeText(CreateStudent.this, "Student created !", Toast.LENGTH_LONG).show();
-            //On revient à la page précédente
+            //Go back to the previous page
             Intent intent = new Intent(this, SearchStudent.class);
             startActivity(intent);
         }
     }
 
-    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
+    //Settings button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -85,6 +84,7 @@ public class CreateStudent extends AppCompatActivity {
         }
     }
 
+    //Actionbar color
     public void ActionBarClr(int r,int g,int b){
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.rgb(r

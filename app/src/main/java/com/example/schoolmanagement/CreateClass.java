@@ -22,17 +22,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import database.entities.Class;
 import viewmodel.ClassViewModel;
 
 public class CreateClass extends AppCompatActivity {
 
+    //Variables
     public static final String CHANNEL_ID_1 = "New class...";
     private NotificationManagerCompat notificationManagerCompat;
     private SharedPreferences sharedPreferences;
     public static final int CPT_NOTIFICATION = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class CreateClass extends AppCompatActivity {
 
         setContentView(R.layout.activity_create_class);
 
-        //Bloque on vertical
+        //Block on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -58,7 +57,6 @@ public class CreateClass extends AppCompatActivity {
     }
 
     public void createMyClass(View view) {
-
 
         EditText name = (EditText) findViewById(R.id.name_class);
         String sName = name.getText().toString();
@@ -72,14 +70,14 @@ public class CreateClass extends AppCompatActivity {
         String sBeginTime = beginTime.getText().toString();
         EditText endTime = (EditText) findViewById(R.id.endTime_class);
         String sEndTime = endTime.getText().toString();
-        //On crée une classe
+
+        //Create class
         Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
 
         //Notification intent onclick creation
         Intent clickIntent = new Intent(this, DisplayClass.class);
         clickIntent.putExtra("MyClass", thisClass);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, clickIntent, 0);
-
 
         //Notification creation
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID_1)
@@ -92,7 +90,6 @@ public class CreateClass extends AppCompatActivity {
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .addAction(R.drawable.ic_touch_app_black_24dp, "Click to see it", pendingIntent );
 
-
         createNotificationChannel();
 
         //DATA
@@ -103,11 +100,11 @@ public class CreateClass extends AppCompatActivity {
         }else{
 
             ClassViewModel classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
-            //On l'insert dans la base de donnée
+            //Insert it in database
             classViewModel.insert(thisClass);
-            //On affiche un toast
+            //Display a toast
             Toast.makeText(CreateClass.this, "Class created !", Toast.LENGTH_LONG).show();
-            //On revient à la page précédente
+            //Go back to the previous page
             Intent intent = new Intent(this, SearchClass.class);
             startActivity(intent);
         }
@@ -137,7 +134,7 @@ public class CreateClass extends AppCompatActivity {
         }
     }
 
-    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
+    //Settings button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -151,6 +148,7 @@ public class CreateClass extends AppCompatActivity {
         }
     }
 
+    //Actionbar color
     public void ActionBarClr(int r,int g,int b){
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.rgb(r

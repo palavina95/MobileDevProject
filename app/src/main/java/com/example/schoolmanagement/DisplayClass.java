@@ -15,10 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import adapter.StudentByFKClassAdapter;
 import database.entities.Class;
 import database.entities.Student;
@@ -26,8 +24,8 @@ import viewmodel.StudentViewModel;
 
 public class DisplayClass extends AppCompatActivity {
 
+    //Variables
     private SharedPreferences sharedPreferences;
-
     private StudentViewModel studentViewModel;
 
     @Override
@@ -62,6 +60,8 @@ public class DisplayClass extends AppCompatActivity {
         //get the listView
         ListView listViewClassByFKClass = (ListView)findViewById(R.id.listViewClassByFKClass);
 
+
+
         //Data source
         final ArrayList<Student> arrayOfStudents = new ArrayList<Student>();
 
@@ -77,7 +77,7 @@ public class DisplayClass extends AppCompatActivity {
             }
         });
 
-        //Bloque on vertical
+        //Block on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -87,7 +87,7 @@ public class DisplayClass extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
+    //Settings button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -101,6 +101,7 @@ public class DisplayClass extends AppCompatActivity {
         }
     }
 
+    //Actionbar color
     public void ActionBarClr(int r,int g,int b){
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.rgb(r

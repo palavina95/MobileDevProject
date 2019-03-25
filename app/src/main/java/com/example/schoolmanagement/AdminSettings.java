@@ -8,11 +8,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SeekBar;
 
 public class AdminSettings extends AppCompatActivity {
 
@@ -32,8 +30,6 @@ public class AdminSettings extends AppCompatActivity {
 
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
     }
 
     @Override
@@ -52,7 +48,7 @@ public class AdminSettings extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //A ajouter partout ou l'on veut que le bouton settings ouvre la page settings.
+    //Settings button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -66,6 +62,7 @@ public class AdminSettings extends AppCompatActivity {
         }
     }
 
+    //Actionbar color
     public void ActionBarClr(int r,int g,int b){
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.rgb(r
