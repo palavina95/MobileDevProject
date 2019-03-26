@@ -24,7 +24,7 @@ public interface StudentDao {
     @Delete
     void delete(Student myStudent);
 
-    @Query("SELECT * FROM student_table WHERE Firstname LIKE :valeurRecherche OR Lastname LIKE :valeurRecherche ORDER BY Firstname,Lastname")
+    @Query("SELECT * FROM student_table WHERE Firstname LIKE :valeurRecherche OR Lastname LIKE :valeurRecherche ORDER BY LOWER(Firstname),LOWER(Lastname)")
     LiveData<List<Student>> getAllStudent(String valeurRecherche);
 
     @Query("SELECT * FROM student_table ORDER BY Lastname")
