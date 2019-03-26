@@ -237,7 +237,7 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("mdp", newMdp);
             editor.commit();
-            Toast.makeText(Settings.this, "Password changer successfully", Toast.LENGTH_LONG).show();
+            Toast.makeText(Settings.this, "Password changed successfully", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(Settings.this, "Wrong old password", Toast.LENGTH_LONG).show();
         }

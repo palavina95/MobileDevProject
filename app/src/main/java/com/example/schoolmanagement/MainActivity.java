@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Check if users account is set, otherwise create it
+        initUsers();
+
+
         //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
@@ -78,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void initUsers(){
+        //Create user for the first time
+        sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
+        //If empty
+        if(!(sharedPreferences.getString("login", "").equals("Admin"))){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("login", "Admin");
+            editor.putString("mdp", "Admin");
+
+            //Create special account to by-pass the captcha for demo
+            editor.putString("loginNoCaptcha", "noCaptcha");
+            editor.putString("mdpNoCaptcha", "");
+
+            editor.commit();
+        }
     }
 
     public void sendRequest(){
@@ -132,8 +153,12 @@ public class MainActivity extends AppCompatActivity {
         if(login.equals(sharedPreferences.getString("login", "")) && mdp.equals(sharedPreferences.getString("mdp",""))
             && successCaptcha)
         {
-                Intent intent = new Intent(this, AdminSettings.class);
-                startActivity(intent);
+            Intent intent = new Intent(this, AdminSettings.class);
+            startActivity(intent);
+        }
+        else if(login.equals(sharedPreferences.getString("loginNoCaptcha", "")) && mdp.equals(sharedPreferences.getString("mdpNoCaptcha",""))){
+            Intent intent = new Intent(this, AdminSettings.class);
+            startActivity(intent);
         }
         else {
             Toast.makeText(MainActivity.this, "Wrong login or password", Toast.LENGTH_LONG).show();
