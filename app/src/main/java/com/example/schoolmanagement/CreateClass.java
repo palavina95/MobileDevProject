@@ -71,34 +71,13 @@ public class CreateClass extends AppCompatActivity {
         EditText endTime = (EditText) findViewById(R.id.endTime_class);
         String sEndTime = endTime.getText().toString();
 
-        //Create class
-        Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
-
-        //Notification intent onclick creation
-        Intent clickIntent = new Intent(this, DisplayClass.class);
-        clickIntent.putExtra("MyClass", thisClass);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, clickIntent, 0);
-
-        //Notification creation
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID_1)
-                .setSmallIcon(R.drawable.ic_new_releases_black_24dp)
-                .setContentTitle(getString(R.string.channelName)+" "+sName)
-                .setContentText(getString(R.string.channelDescription))
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText(getString(R.string.channelDescription)))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .addAction(R.drawable.ic_touch_app_black_24dp, "Click to see it", pendingIntent );
-
-        createNotificationChannel();
-
         //DATA
         if(sName.trim().isEmpty() || sRoom.trim().isEmpty() || sLocation.trim().isEmpty() || sTeacher.trim().isEmpty()
-                || sBeginTime.trim().isEmpty() || sEndTime.trim().isEmpty()){
+                || sBeginTime.trim().isEmpty() || sEndTime.trim().isEmpty()) {
             Toast.makeText(CreateClass.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
             return;
         }else{
-
+            Class thisClass = new Class(sName, Integer.parseInt(sRoom), sLocation, sTeacher, sBeginTime, sEndTime);
             ClassViewModel classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
             //Insert it in database
             classViewModel.insert(thisClass);
@@ -107,15 +86,33 @@ public class CreateClass extends AppCompatActivity {
             //Go back to the previous page
             Intent intent = new Intent(this, SearchClass.class);
             startActivity(intent);
+
+
+            //Notification intent onclick creation
+            Intent clickIntent = new Intent(this, DisplayClass.class);
+            clickIntent.putExtra("MyClass", thisClass);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, clickIntent, 0);
+
+            //Notification creation
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID_1)
+                    .setSmallIcon(R.drawable.ic_new_releases_black_24dp)
+                    .setContentTitle(getString(R.string.channelName) + " " + sName)
+                    .setContentText(getString(R.string.channelDescription))
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(getString(R.string.channelDescription)))
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                    .addAction(R.drawable.ic_touch_app_black_24dp, "Click to see it", pendingIntent);
+
+            createNotificationChannel();
+
+            //Create the channel
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(CPT_NOTIFICATION + 1, builder.build());
+
         }
-
-        //Create the channel
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(CPT_NOTIFICATION+1, builder.build());
-
-
     }
 
     private void createNotificationChannel() {
@@ -154,9 +151,5 @@ public class CreateClass extends AppCompatActivity {
                 new ColorDrawable(Color.rgb(r
                         ,g,b)));
     }
-
-
-
-
 
 }
