@@ -101,8 +101,7 @@ public class CreateClass extends AppCompatActivity {
                     .setStyle(new NotificationCompat.BigTextStyle()
                             .bigText(getString(R.string.channelDescription)))
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                    .addAction(R.drawable.ic_touch_app_black_24dp, "Click to see it", pendingIntent);
+                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 
             createNotificationChannel();
 
@@ -110,7 +109,7 @@ public class CreateClass extends AppCompatActivity {
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
             // notificationId is a unique int for each notification that you must define
-            notificationManager.notify(CPT_NOTIFICATION + 1, builder.build());
+            notificationManager.notify(0, builder.build());
 
         }
     }

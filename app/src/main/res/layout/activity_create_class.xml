@@ -106,7 +106,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/EnterRoom"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/tv_room_class"
         app:layout_constraintTop_toBottomOf="@+id/name_class" />
 

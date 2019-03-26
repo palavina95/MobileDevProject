@@ -13,7 +13,7 @@
         completions."
     </string>
     <string name="channelName">New class !</string>
-    <string name="channelDescription">A new class has been created ! You should click here and see if you want to apply for this class !</string>
+    <string name="channelDescription">A new class has been created !</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
