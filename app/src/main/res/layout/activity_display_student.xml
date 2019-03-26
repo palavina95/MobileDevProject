@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +18,7 @@
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="32dp"
         android:text="Firstname"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/EnterFirstname"
         android:inputType="textPersonName"
@@ -96,3 +100,4 @@
 
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

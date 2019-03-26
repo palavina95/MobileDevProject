@@ -2,25 +2,25 @@
 
 
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ModifyClass">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ModifyClass">
 
-        <Button
-            android:id="@+id/buttonSaveClass"
-            android:layout_width="1080px"
-            android:layout_height="78dp"
-            android:layout_marginTop="12dp"
-            android:onClick="modifyClass"
-            android:text="Save"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listforModifyClassByFkStudent" />
+    <Button
+        android:id="@+id/buttonSaveClass"
+        android:layout_width="1080px"
+        android:layout_height="78dp"
+        android:layout_marginTop="12dp"
+        android:onClick="modifyClass"
+        android:text="Save"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listforModifyClassByFkStudent" />
 
     <TextView
         android:id="@+id/name_class"
@@ -33,72 +33,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/room_number"
-            android:layout_width="131dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:text="N° Room"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_class" />
+    <TextView
+        android:id="@+id/room_number"
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="N° Room"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_class" />
 
-        <TextView
-            android:id="@+id/location_room"
-            android:layout_width="131dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:text="Location"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_number" />
+    <TextView
+        android:id="@+id/location_room"
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="Location"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_number" />
 
-        <TextView
-            android:id="@+id/teacher_class"
-            android:layout_width="131dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:text="Teacher"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location_room" />
+    <TextView
+        android:id="@+id/teacher_class"
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="Teacher"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_room" />
 
-        <TextView
-            android:id="@+id/begintime_class"
-            android:layout_width="131dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:text="BeginTime"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teacher_class" />
+    <TextView
+        android:id="@+id/begintime_class"
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="BeginTime"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teacher_class" />
 
-        <TextView
-            android:id="@+id/endtime_class"
-            android:layout_width="131dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:text="EndTime"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/begintime_class" />
+    <TextView
+        android:id="@+id/endtime_class"
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="EndTime"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/begintime_class" />
 
-        <EditText
-            android:id="@+id/text_teacher_class"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/teacher_class"
-            app:layout_constraintTop_toBottomOf="@+id/location_class" />
+    <EditText
+        android:id="@+id/text_teacher_class"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/teacher_class"
+        app:layout_constraintTop_toBottomOf="@+id/location_class" />
 
     <EditText
         android:id="@+id/text_name_class"
@@ -112,65 +112,65 @@
         app:layout_constraintStart_toEndOf="@+id/name_class"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/text_begintime_class"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/begintime_class"
-            app:layout_constraintTop_toBottomOf="@+id/text_teacher_class" />
+    <EditText
+        android:id="@+id/text_begintime_class"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/begintime_class"
+        app:layout_constraintTop_toBottomOf="@+id/text_teacher_class" />
 
-        <EditText
-            android:id="@+id/text_room_class"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/room_number"
-            app:layout_constraintTop_toBottomOf="@+id/text_name_class" />
+    <EditText
+        android:id="@+id/text_room_class"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/room_number"
+        app:layout_constraintTop_toBottomOf="@+id/text_name_class" />
 
-        <EditText
-            android:id="@+id/location_class"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:ems="10"
-            android:inputType="time"
-            android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/location_room"
-            app:layout_constraintTop_toBottomOf="@+id/text_room_class" />
+    <EditText
+        android:id="@+id/location_class"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="time"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/location_room"
+        app:layout_constraintTop_toBottomOf="@+id/text_room_class" />
 
-        <EditText
-            android:id="@+id/text_endtime_class"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="12dp"
-            android:ems="10"
-            android:inputType="time"
-            android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/endtime_class"
-            app:layout_constraintTop_toBottomOf="@+id/text_begintime_class" />
+    <EditText
+        android:id="@+id/text_endtime_class"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="time"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/endtime_class"
+        app:layout_constraintTop_toBottomOf="@+id/text_begintime_class" />
 
 
-        <ListView
-            android:id="@+id/listforModifyClassByFkStudent"
-            android:layout_width="wrap_content"
-            android:layout_height="192dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/endtime_class"
-            tools:listitem="@layout/student_by_fkstudent" />
+    <ListView
+        android:id="@+id/listforModifyClassByFkStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="192dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endtime_class"
+        tools:listitem="@layout/student_by_fkstudent" />
 
-    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
