@@ -1,8 +1,10 @@
-/*package database.firebase;
+package database.firebase;
 
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -10,17 +12,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.entities.Class;
+import database.entities.Student;
 
-public class ClassListLiveData extends LiveData<List<Class>> {
+public class StudentListLiveData extends LiveData<List<Student>> {
 
-    private static final String TAG = "ClassListLiveData";
+    private static final String TAG = "StudentListLiveData";
 
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
+    private final String valeurRecherche;
 
-    public ClassListLiveData(DatabaseReference ref) {
+    public StudentListLiveData(DatabaseReference ref, String valeurRecherche) {
         reference = ref;
+        this.valeurRecherche = valeurRecherche;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class ClassListLiveData extends LiveData<List<Class>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toClientList(dataSnapshot));
+            setValue(toStudentList(dataSnapshot));
         }
 
         @Override
@@ -46,14 +50,18 @@ public class ClassListLiveData extends LiveData<List<Class>> {
         }
     }
 
-    private List<Class> toClientList(DataSnapshot snapshot) {
-        List<Class> classe = new ArrayList<>();
+    private List<Student> toStudentList(DataSnapshot snapshot) {
+        List<Student> students = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            Class entity = childSnapshot.getValue(Class.class);
-            entity.setId(childSnapshot.getKey());
-            classe.add(entity);
+            Student entity = childSnapshot.getValue(Student.class);
+            entity.setID(childSnapshot.getKey());
+
+            if(entity.getFirstname().toLowerCase().contains(valeurRecherche) || entity.getLastname().toLowerCase().contains(valeurRecherche)) {
+                students.add(entity);
+            }
         }
-        return classe;
+
+        return students;
     }
 
-}*/
+}

@@ -34,6 +34,9 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
     //Variable
     private SharedPreferences sharedPreferences;
 
+    // Construct the data source
+    ArrayList<Student> arrayOfStudents = new ArrayList<Student>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +51,7 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
 
         SwipeMenuListView listView = (SwipeMenuListView)findViewById(R.id.listViewStudent);
 
-        // Construct the data source
-        final ArrayList<Student> arrayOfStudents = new ArrayList<Student>();
+
 
         final StudentsAdapter adapter = new StudentsAdapter(ResultListOfSearchStudent.this, arrayOfStudents);
 
@@ -57,10 +59,6 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
 
         //Handle research value
         String valeurRecherche = sharedPreferences.getString("valeurRecherche","");
-        StringBuilder sb = new StringBuilder(valeurRecherche);
-        sb.insert(0, "%");
-        sb.append("%");
-        valeurRecherche =  sb.toString();
 
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         studentViewModel.getAllStudents(valeurRecherche).observe(this, new Observer<List<Student>>() {

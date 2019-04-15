@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -32,18 +33,19 @@ import com.google.android.gms.tasks.Task;
 
 public class InfosApp extends AppCompatActivity {
 
-    //Final variable
+    private SharedPreferences sharedPreferences;
+
     private static final String TAG = "MapActivity";
+
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
 
-    //Variable
+    //vars
     private Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class InfosApp extends AppCompatActivity {
 
         getLocationPermission();
 
-        //Click on phone number and then dial it
+        //Code pour cliquer sur le numéro de téléphone et le composer directement
         final TextView phoneNumber = (TextView) findViewById(R.id.phoneNumber);
         phoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +75,7 @@ public class InfosApp extends AppCompatActivity {
             }
         });
 
-        //Click on mail and then send a mail
+        //Code pour cliquer sur le mail et envoyer un mail
         final TextView mail = (TextView) findViewById(R.id.mail);
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +86,7 @@ public class InfosApp extends AppCompatActivity {
             }
         });
 
-        //Hold the smartphone in vertical mode
+        //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -105,6 +107,7 @@ public class InfosApp extends AppCompatActivity {
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: found location!");
+                            Location currentLocation = (Location) task.getResult();
                             //On pose la camera sur l'HES de Sierre
                             moveCamera(new LatLng(46.292854, 7.536262), DEFAULT_ZOOM,"HES-SO Sierre");
 
@@ -123,9 +126,9 @@ public class InfosApp extends AppCompatActivity {
     private void moveCamera(LatLng latLng, float zoom, String title) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
-        MarkerOptions options = new MarkerOptions().position(latLng).title(title);
+        /*MarkerOptions options = new MarkerOptions().position(latLng).title(title);
 
-        mMap.addMarker(options);
+        mMap.addMarker(options);*/
     }
 
     private void initMap() {
@@ -173,8 +176,8 @@ public class InfosApp extends AppCompatActivity {
         switch(requestCode){
             case LOCATION_PERMISSION_REQUEST_CODE:{
                 if(grantResults.length > 0 ){
-                    for (int grantResult : grantResults) {
-                        if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    for(int i=0; i< grantResults.length;i++){
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
                             mLocationPermissionGranted = false;
                             return;
                         }

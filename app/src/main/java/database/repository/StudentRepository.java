@@ -4,44 +4,54 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 import database.SchoolManagementDatabase;
-import database.async.student.DeleteStudentAsyncTask;
-import database.async.student.InsertStudentAsyncTask;
-import database.async.student.UpdateStudentAsyncTask;
-import database.dao.StudentDao;
 import database.entities.Class;
 import database.entities.Student;
+import database.firebase.StudentListLiveData;
 
 public class StudentRepository {
 
-    private StudentDao studentDao;
     private LiveData<List<Student>> allStudents;
 
     public StudentRepository(Application application){
         SchoolManagementDatabase database = SchoolManagementDatabase.getInstance(application);
-        studentDao = database.studentDao();
-        allStudents = studentDao.getAllStudentSimple();
     }
 
     public void insert(Student student)
     {
-        new InsertStudentAsyncTask(studentDao).execute(student);
+        String id = FirebaseDatabase.getInstance()
+                        .getReference("students").push().getKey();
+        FirebaseDatabase.getInstance()
+                        .getReference("students")
+                        .child(id).setValue(student);
     }
 
     public void update(Student student)
     {
-        new UpdateStudentAsyncTask(studentDao).execute(student);
+        FirebaseDatabase.getInstance()
+                        .getReference("students")
+                        .child(student.getId())
+                        .updateChildren(student.toMap());
     }
 
     public void delete(Student student)
     {
-        new DeleteStudentAsyncTask(studentDao).execute(student);
+        FirebaseDatabase.getInstance()
+                .getReference("students")
+                .child(student.getId())
+                .removeValue();
     }
 
     public LiveData<List<Student>> getAllStudents(String valeurRecherche) {
-        return studentDao.getAllStudent(valeurRecherche);
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                                        .getReference("students");
+
+        return new StudentListLiveData(reference,valeurRecherche);
     }
 
     public LiveData<List<Student>> getAllStudentsSimple(){
@@ -49,7 +59,7 @@ public class StudentRepository {
     }
 
     public LiveData<List<Student>> getAllStudentsByFKClass (int FKClass) {
-        return studentDao.getAllStudentByFKClass(FKClass);
+        return null;
     }
 
 }

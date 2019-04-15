@@ -8,22 +8,17 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
 import database.dao.ClassDao;
-import database.dao.StudentDao;
 import database.dao.Student_ClassDao;
 import database.entities.Class;
 import database.entities.Student;
 import database.entities.Student_Class;
 
-@Database(entities = {Student.class, Class.class, Student_Class.class}, version = 2,exportSchema = false)
+@Database(entities = {Class.class, Student_Class.class}, version = 3,exportSchema = false)
 public abstract class SchoolManagementDatabase extends RoomDatabase {
 
     private static SchoolManagementDatabase instance;
 
-    public abstract StudentDao studentDao();
     public abstract ClassDao classDao();
     public abstract Student_ClassDao student_classDao();
 
@@ -49,12 +44,10 @@ public abstract class SchoolManagementDatabase extends RoomDatabase {
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
 
-        private StudentDao studentDao;
         private ClassDao classDao;
         private Student_ClassDao student_classDao;
 
         private PopulateDbAsyncTask (SchoolManagementDatabase db){
-            studentDao = db.studentDao();
             classDao = db.classDao();
             student_classDao = db.student_classDao();
         }

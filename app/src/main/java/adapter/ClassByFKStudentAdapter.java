@@ -24,18 +24,18 @@ import viewmodel.Student_ClassViewModel;
 
 public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
 
-    private int IdStudent;
+    private String IdStudent;
     private Student_ClassViewModel studentClassViewModel;
     public ModifyStudent modifyStudent;
 
-    public ClassByFKStudentAdapter(Context context, ArrayList<Class> classes, int IdStudent, Student_ClassViewModel student_classViewModel, ModifyStudent modifyStudent) {
+    public ClassByFKStudentAdapter(Context context, ArrayList<Class> classes, String IdStudent, Student_ClassViewModel student_classViewModel, ModifyStudent modifyStudent) {
         super(context, 0, classes);
         this.IdStudent = IdStudent;
         this.studentClassViewModel = student_classViewModel;
         this.modifyStudent = modifyStudent;
     }
 
-    public ClassByFKStudentAdapter(Context context, ArrayList<Class> classes, int IdStudent) {
+    public ClassByFKStudentAdapter(Context context, ArrayList<Class> classes, String IdStudent) {
         super(context, 0, classes);
         this.IdStudent = IdStudent;
     }
@@ -71,6 +71,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 Student_Class student_class = new Student_Class(IdStudent, classe.getPK_ID_Class());
                 if(checkBox.isChecked()) {
                     Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
@@ -79,6 +80,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
                     Toast.makeText(getContext(), "DELETION CONFIRMED !", Toast.LENGTH_LONG).show();
                     studentClassViewModel.delete(student_class);
                 }
+                */
             }
         });
 
@@ -88,6 +90,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
             Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
             checkBox.setButtonDrawable(transparentDrawable);
         }else {
+            /*
             studentClassViewModel.verifyExistance(IdStudent, classe.getPK_ID_Class()).observe(modifyStudent, new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
@@ -97,6 +100,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
                     }
                 }
             });
+            */
         }
 
         // Return the completed view to render on screen + notify dataChanged

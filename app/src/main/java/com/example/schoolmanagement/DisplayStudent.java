@@ -56,7 +56,7 @@ public class DisplayStudent extends AppCompatActivity {
         // Construct the data source
         final ArrayList<Class> arrayOfClasses = new ArrayList<Class>();
 
-        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(DisplayStudent.this, arrayOfClasses,thisStudent.getPK_ID_Student());
+        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(DisplayStudent.this, arrayOfClasses,thisStudent.getId());
 
         listViewStudentByFKStudent.setAdapter(adapter);
 

@@ -32,7 +32,7 @@ public class ModifyStudent extends AppCompatActivity {
 
     //Variable
     private SharedPreferences sharedPreferences;
-    private int IdStudent;
+    private String IdStudent;
 
     //ViewModel
     private ClassViewModel classViewModel;
@@ -62,7 +62,7 @@ public class ModifyStudent extends AppCompatActivity {
         editBirthdate.setText(thisStudent.getBirthdate());
 
         //We have also the ID of the student
-        IdStudent = thisStudent.getPK_ID_Student();
+        IdStudent = thisStudent.getId();
 
         //Get the listView
         ListView listViewStudentByFKStudent = (ListView)findViewById(R.id.listforModifyStudentByFKStudent);
@@ -110,7 +110,7 @@ public class ModifyStudent extends AppCompatActivity {
             Student thisStudent = new Student(firstname,lastname,birthdate);
             StudentViewModel studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
             //On l'insert dans la base de donnée
-            thisStudent.setPK_ID_Student(IdStudent);    //Pour pouvoir retrouver le bon étudiant
+            thisStudent.setID(IdStudent);    //Pour pouvoir retrouver le bon étudiant
             studentViewModel.update(thisStudent);
             //On affiche un toast
             Toast.makeText(ModifyStudent.this, "Student updated !", Toast.LENGTH_LONG).show();
