@@ -8,18 +8,15 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-import database.dao.ClassDao;
 import database.dao.Student_ClassDao;
 import database.entities.Class;
-import database.entities.Student;
 import database.entities.Student_Class;
 
-@Database(entities = {Class.class, Student_Class.class}, version = 3,exportSchema = false)
+@Database(entities = {Student_Class.class}, version = 3,exportSchema = false)
 public abstract class SchoolManagementDatabase extends RoomDatabase {
 
     private static SchoolManagementDatabase instance;
 
-    public abstract ClassDao classDao();
     public abstract Student_ClassDao student_classDao();
 
     //Synchronised = only one thread can access this instance at a time
@@ -44,11 +41,9 @@ public abstract class SchoolManagementDatabase extends RoomDatabase {
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
 
-        private ClassDao classDao;
         private Student_ClassDao student_classDao;
 
         private PopulateDbAsyncTask (SchoolManagementDatabase db){
-            classDao = db.classDao();
             student_classDao = db.student_classDao();
         }
 

@@ -1,24 +1,29 @@
-/*package database.firebase;
+package database.firebase;
 
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Console;
+import java.util.ArrayList;
+import java.util.List;
 import database.entities.Class;
 
-public class ClassLiveData extends LiveData<Class> {
+public class ClassListLiveData extends LiveData<List<Class>> {
 
-    private static final String TAG = "ClassLiveData";
+    private static final String TAG = "ClassListLiveData";
+
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
+    private final String valeurRecherche;
 
-    public ClassLiveData(DatabaseReference reference) {
-        this.reference = reference;
+    public ClassListLiveData(DatabaseReference ref, String valeurRecherche) {
+        reference = ref;
+        this.valeurRecherche = valeurRecherche;
     }
 
     @Override
@@ -35,9 +40,7 @@ public class ClassLiveData extends LiveData<Class> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            Class entity = dataSnapshot.getValue(Class.class);
-            entity.setId(dataSnapshot.getKey());
-            setValue(entity);
+            setValue(toClassList(dataSnapshot));
         }
 
         @Override
@@ -46,4 +49,20 @@ public class ClassLiveData extends LiveData<Class> {
         }
     }
 
-}*/
+    private List<Class> toClassList(DataSnapshot snapshot) {
+        List<Class> classes = new ArrayList<>();
+        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+            Class entity = childSnapshot.getValue(Class.class);
+            entity.setId(childSnapshot.getKey());
+
+            System.out.print("Pas dedans");
+
+            if(entity.getName().toLowerCase().contains(valeurRecherche) || entity.getTeacherName().toLowerCase().contains(valeurRecherche)) {
+                classes.add(entity);
+                System.out.print("Ici");
+            }
+        }
+        return classes;
+    }
+
+}

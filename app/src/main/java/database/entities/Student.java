@@ -24,7 +24,6 @@ public class Student implements Serializable {
 
     }
 
-
     public Student(String Firstname, String Lastname, String Birthdate) {
         this.Firstname = Firstname;
         this.Lastname = Lastname;
