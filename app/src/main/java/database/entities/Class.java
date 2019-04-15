@@ -2,9 +2,7 @@ package database.entities;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-
 import java.io.Serializable;
-import java.sql.Time;
 
 @Entity(tableName = "class_table")
 public class Class implements Serializable {
