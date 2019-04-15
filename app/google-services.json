@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "37161276504",
+    "firebase_url": "https://schoolmanagementcloud-cd024.firebaseio.com",
+    "project_id": "schoolmanagementcloud-cd024",
+    "storage_bucket": "schoolmanagementcloud-cd024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37161276504:android:2799dd89e199bd3b",
+        "android_client_info": {
+          "package_name": "com.example.schoolmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37161276504-7jh9u428kip9lua4ettojj4dvqrrattk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.schoolmanagement",
+            "certificate_hash": "057a417bad66de5e3ef573f362a98cb0eb797d23"
+          }
+        },
+        {
+          "client_id": "37161276504-535u7mup72ac8rcctqlmhdmmkf3dh6j2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjWDQzHwcn5J8KW0wYGTasLjP3JitKzoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37161276504-535u7mup72ac8rcctqlmhdmmkf3dh6j2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
