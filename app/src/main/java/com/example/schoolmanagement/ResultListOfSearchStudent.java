@@ -64,6 +64,7 @@ public class ResultListOfSearchStudent extends AppCompatActivity {
         studentViewModel.getAllStudents(valeurRecherche).observe(this, new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
+                adapter.clear();
                 adapter.addAll(students);
             }
         });
