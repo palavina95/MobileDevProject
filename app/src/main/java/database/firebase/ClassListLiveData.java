@@ -55,12 +55,9 @@ public class ClassListLiveData extends LiveData<List<Class>> {
             Class entity = childSnapshot.getValue(Class.class);
             entity.setId(childSnapshot.getKey());
 
-            Log.e(TAG, "La dedans ");
-
-            //if(entity.getName().toLowerCase().contains(valeurRecherche)) {
+            if(entity.getName().toLowerCase().contains(valeurRecherche)) {
                 classes.add(entity);
-                Log.e(TAG, "Ici");
-            //}
+            }
         }
         return classes;
     }

@@ -68,17 +68,17 @@ public class DisplayClass extends AppCompatActivity {
         //Data source
         final ArrayList<Student> arrayOfStudents = new ArrayList<Student>();
 
-        final StudentByFKClassAdapter adapterC = new StudentByFKClassAdapter(DisplayClass.this, arrayOfStudents, thisClass.getPK_ID_Class());
+        final StudentByFKClassAdapter adapterC = new StudentByFKClassAdapter(DisplayClass.this, arrayOfStudents, thisClass.getId());
 
         listViewClassByFKClass.setAdapter(adapterC);
 
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
-        studentViewModel.getAllStudentByFKClass(thisClass.getPK_ID_Class()).observe(this, new Observer<List<Student>>() {
+        /*studentViewModel.getAllStudentByFKClass(thisClass.getPK_ID_Class()).observe(this, new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
                 adapterC.addAll(students);
             }
-        });
+        });*/
 
         //Block on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

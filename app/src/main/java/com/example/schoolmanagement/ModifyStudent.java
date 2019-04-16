@@ -77,13 +77,12 @@ public class ModifyStudent extends AppCompatActivity {
         listViewStudentByFKStudent.setAdapter(adapter);
 
         classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
-        //LAAAA
-        /*classViewModel.getAllClass().observe(this, new Observer<List<Class>>() {
+        classViewModel.getAllClass().observe(this, new Observer<List<Class>>() {
             @Override
             public void onChanged(@Nullable List<Class> classes) {
                 adapter.addAll(classes);
             }
-        });*/
+        });
 
         //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

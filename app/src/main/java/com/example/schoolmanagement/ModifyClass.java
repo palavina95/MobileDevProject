@@ -33,7 +33,7 @@ public class ModifyClass extends AppCompatActivity {
 
     //Variable
     private SharedPreferences sharedPreferences;
-    private int idClass;
+    private String idClass;
 
     //Viewmodel
     private StudentViewModel studentViewModel;
@@ -68,7 +68,7 @@ public class ModifyClass extends AppCompatActivity {
         TextView textViewEndTime = findViewById(R.id.text_endtime_class);
         textViewEndTime.setText(thisClass.getEndingTime());
 
-        idClass = thisClass.getPK_ID_Class();
+        idClass = thisClass.getId();
 
         ListView listViewClassByFKClass = (ListView)findViewById(R.id.listforModifyClassByFkStudent);
 
@@ -81,12 +81,12 @@ public class ModifyClass extends AppCompatActivity {
         listViewClassByFKClass.setAdapter(adapterC);
 
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
-        studentViewModel.getAllStudentsSimple().observe(this, new Observer<List<Student>>() {
+        /*studentViewModel.getAllStudentsSimple().observe(this, new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
                 adapterC.addAll(students);
             }
-        });
+        });*/
 
         //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -115,7 +115,7 @@ public class ModifyClass extends AppCompatActivity {
             Class thisClass = new Class(sName,Integer.parseInt(sRoom),sLocation,sTeacher,sBeginTime,sEndTime);
             ClassViewModel classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
             //On l'insert dans la base de donnée
-            thisClass.setPK_ID_Class(idClass);    //Pour pouvoir retrouver le bon étudiant
+            thisClass.setId(idClass);    //Pour pouvoir retrouver le bon étudiant
             classViewModel.update(thisClass);
             //On affiche un toast
             Toast.makeText(ModifyClass.this, "Class updated !", Toast.LENGTH_LONG).show();

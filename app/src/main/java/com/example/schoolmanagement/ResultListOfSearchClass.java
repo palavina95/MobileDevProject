@@ -58,8 +58,8 @@ public class ResultListOfSearchClass extends AppCompatActivity {
         //Handle research value
         String valeurRecherche = sharedPreferences.getString("valeurRechercheClass","");
         StringBuilder sb = new StringBuilder(valeurRecherche);
-        sb.insert(0, "%");
-        sb.append("%");
+        /*sb.insert(0, "%");
+        sb.append("%");*/
         valeurRecherche =  sb.toString();
 
         classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
