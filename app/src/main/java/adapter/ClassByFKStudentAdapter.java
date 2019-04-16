@@ -75,27 +75,32 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
             @Override
             public void onClick(View v) {
 
-                Student_Class student_class = new Student_Class(IdStudent, classe.getId());
+                final Student_Class student_class = new Student_Class(IdStudent, classe.getId());
 
-                /*
                 studentClassViewModel.getIdStudent_Class(IdStudent,classe.getId()).observe(modifyStudent, new Observer<String>() {
+
+                    boolean change = true;
                     @Override
                     public void onChanged(@Nullable String s) {
-                        student_class.setId(s);
+                        if (s != null && change) {
+                            Log.e(TAG, "s vaut : "+s);
+                            student_class.setId(s);
+
+                            if(checkBox.isChecked()) {
+                                Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
+                                studentClassViewModel.insert(student_class);
+                            }else{
+                                Toast.makeText(getContext(), "DELETION CONFIRMED !", Toast.LENGTH_LONG).show();
+                                studentClassViewModel.delete(student_class);
+                            }
+                            change = false;
+                        }
                     }
                 });
-                */
-
 
                 Log.d(TAG, "student_classID : "+student_class.getId());
 
-                if(checkBox.isChecked()) {
-                    Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
-                    studentClassViewModel.insert(student_class);
-                }else{
-                    Toast.makeText(getContext(), "DELETION CONFIRMED !", Toast.LENGTH_LONG).show();
-                    studentClassViewModel.delete(student_class);
-                }
+
 
             }
         });
