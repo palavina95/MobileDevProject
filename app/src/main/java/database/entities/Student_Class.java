@@ -15,6 +15,9 @@ public class Student_Class {
     @Exclude
     private String id;
 
+    public Student_Class(){
+
+    }
 
     public Student_Class(String FK_Student, String FK_Class) {
         this.FK_Student = FK_Student;
@@ -49,8 +52,8 @@ public class Student_Class {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("FK_Student", FK_Student);
-        result.put("FK_Class", FK_Class);
+        result.put("fK_Student", FK_Student);
+        result.put("fK_Class", FK_Class);
         ;return result;
     }
 }

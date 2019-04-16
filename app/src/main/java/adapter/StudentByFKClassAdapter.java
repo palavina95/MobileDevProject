@@ -73,6 +73,9 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
             @Override
             public void onClick(View v) {
                 Student_Class student_class = new Student_Class(student.getId(), IdClass);
+
+
+
                 if(checkBox.isChecked()) {
                     Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
                     studentClassViewModel.insert(student_class);

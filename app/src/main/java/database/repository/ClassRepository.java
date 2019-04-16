@@ -1,5 +1,6 @@
 package database.repository;
 import android.app.Application;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
 
 import com.google.firebase.database.DatabaseReference;
@@ -57,14 +58,14 @@ public class ClassRepository {
         return new ClassListLiveData(reference,valeurRecherche);
     }
 
-    public LiveData<List<Class>> getAllClassesByFKStudent(String FKStudent){
+    public LiveData<List<Class>> getAllClassesByFKStudent(String FKStudent, LifecycleOwner owner){
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("classes");
 
         DatabaseReference reference2 = FirebaseDatabase.getInstance()
                 .getReference("manyToMany");
 
-        return new ClassbyFKStudentListLiveData(reference,reference2,FKStudent);
+        return new ClassbyFKStudentListLiveData(reference,reference2,FKStudent,owner);
     }
 
 }

@@ -1,7 +1,10 @@
 package database.firebase;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,11 +24,13 @@ public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
     private final DatabaseReference reference,reference2;
     private final MyValueEventListener listener = new MyValueEventListener();
     private final String FK_Student;
+    private final LifecycleOwner owner;
 
-    public ClassbyFKStudentListLiveData(DatabaseReference ref, DatabaseReference ref2,String FK_Student) {
+    public ClassbyFKStudentListLiveData(DatabaseReference ref, DatabaseReference ref2, String FK_Student, LifecycleOwner owner) {
         reference = ref;
         reference2 = ref2;
         this.FK_Student = FK_Student;
+        this.owner = owner;
     }
 
     @Override
@@ -59,16 +64,24 @@ public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
 
             Log.e(TAG, "La dedans before Existance");
 
+            //PROB 1 : always null
             LiveData<Integer> response = new verifyExistanceLiveData(reference2,FK_Student,entity.getId());
 
-            Log.e(TAG, "reponse = "+ response.getValue());
-            Log.e(TAG, "FK_Student = "+ FK_Student);
-            Log.e(TAG, "FK_Class = "+ entity.getId());
+            response.observe(owner, new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
 
-            if(response.getValue() == 1) {
-                classes.add(entity);
-                Log.e(TAG, "Ici");
-            }
+                    Log.e(TAG, "reponse = "+ response.getValue());
+                    Log.e(TAG, "FK_Student = "+ FK_Student);
+                    Log.e(TAG, "FK_Class = "+ entity.getId());
+
+                    if(response.getValue() == 1) {
+                        classes.add(entity);
+                        Log.e(TAG, "Ici");
+                    }
+                }
+            });
+
         }
         return classes;
     }

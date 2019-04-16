@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.schoolmanagement.ModifyStudent;
 import com.example.schoolmanagement.R;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import database.entities.Class;
@@ -27,6 +29,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
     private String IdStudent;
     private Student_ClassViewModel studentClassViewModel;
     public ModifyStudent modifyStudent;
+    private static final String TAG = "ClassbyFKStudentAdapter";
 
     public ClassByFKStudentAdapter(Context context, ArrayList<Class> classes, String IdStudent, Student_ClassViewModel student_classViewModel, ModifyStudent modifyStudent) {
         super(context, 0, classes);
@@ -71,8 +74,21 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Student_Class student_class = new Student_Class(IdStudent, classe.getId());
+
                 /*
-                Student_Class student_class = new Student_Class(IdStudent, classe.getPK_ID_Class());
+                studentClassViewModel.getIdStudent_Class(IdStudent,classe.getId()).observe(modifyStudent, new Observer<String>() {
+                    @Override
+                    public void onChanged(@Nullable String s) {
+                        student_class.setId(s);
+                    }
+                });
+                */
+
+
+                Log.d(TAG, "student_classID : "+student_class.getId());
+
                 if(checkBox.isChecked()) {
                     Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
                     studentClassViewModel.insert(student_class);
@@ -80,7 +96,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
                     Toast.makeText(getContext(), "DELETION CONFIRMED !", Toast.LENGTH_LONG).show();
                     studentClassViewModel.delete(student_class);
                 }
-                */
+
             }
         });
 
@@ -90,8 +106,8 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
             Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
             checkBox.setButtonDrawable(transparentDrawable);
         }else {
-            /*
-            studentClassViewModel.verifyExistance(IdStudent, classe.getPK_ID_Class()).observe(modifyStudent, new Observer<Integer>() {
+
+            studentClassViewModel.verifyExistance(IdStudent, classe.getId()).observe(modifyStudent, new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
                     //If the student has already applied for this class
@@ -100,7 +116,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
                     }
                 }
             });
-            */
+
         }
 
         // Return the completed view to render on screen + notify dataChanged

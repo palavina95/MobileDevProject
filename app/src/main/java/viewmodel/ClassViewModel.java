@@ -2,6 +2,7 @@ package viewmodel;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
@@ -47,12 +48,12 @@ public class ClassViewModel extends AndroidViewModel {
         return repositoryC.getClassSearch(valeurRecherche);
     }
 
-    public LiveData<List<Class>> getAllClassByFKStudent(String FKStudent){
+    public LiveData<List<Class>> getAllClassByFKStudent(String FKStudent, LifecycleOwner owner){
 
         //Juste pour maintenant (une seule fois pour commencer
         //Student_Class first = new Student_Class("-LcVjAtMfmtwSRAW4GN4","-LcWU1GWcQU8Rf66ZxvF");
         //repositorySC.insert(first);
         /***************/
-        return repositoryC.getAllClassesByFKStudent(FKStudent);
+        return repositoryC.getAllClassesByFKStudent(FKStudent, owner);
     }
 }
