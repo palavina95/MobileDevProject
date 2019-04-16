@@ -5,16 +5,16 @@ import android.arch.lifecycle.LiveData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
-import database.SchoolManagementDatabase;
+
 import database.entities.Class;
 import database.firebase.ClassListLiveData;
+import database.firebase.ClassbyFKStudentListLiveData;
 
 public class ClassRepository {
 
     private LiveData<List<Class>> allClasses;
 
     public ClassRepository(Application application){
-        SchoolManagementDatabase database = SchoolManagementDatabase.getInstance(application);
     }
 
     public void insert(Class myClass)
@@ -43,7 +43,11 @@ public class ClassRepository {
     }
 
     public LiveData<List<Class>> getAllClasses() {
-        return allClasses;
+
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("classes");
+
+        return new ClassListLiveData(reference,"");
     }
 
     public LiveData<List<Class>> getClassSearch(String valeurRecherche){
@@ -53,8 +57,14 @@ public class ClassRepository {
         return new ClassListLiveData(reference,valeurRecherche);
     }
 
-    public LiveData<List<Class>> getAllClassesByFKStudent(int FKStudent){
-        return null;
+    public LiveData<List<Class>> getAllClassesByFKStudent(String FKStudent){
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("classes");
+
+        DatabaseReference reference2 = FirebaseDatabase.getInstance()
+                .getReference("manyToMany");
+
+        return new ClassbyFKStudentListLiveData(reference,reference2,FKStudent);
     }
 
 }

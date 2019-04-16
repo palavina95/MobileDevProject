@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import database.dao.Student_ClassDao;
 import database.entities.Class;
 import database.entities.Student_Class;
 import database.repository.ClassRepository;
@@ -48,11 +47,11 @@ public class ClassViewModel extends AndroidViewModel {
         return repositoryC.getClassSearch(valeurRecherche);
     }
 
-    public LiveData<List<Class>> getAllClassByFKStudent(int FKStudent){
+    public LiveData<List<Class>> getAllClassByFKStudent(String FKStudent){
 
-        /*Juste pour maintenant (une seule fois pour commencer
-        Student_Class first = new Student_Class(1,1);
-        repositorySC.insert(first); */
+        //Juste pour maintenant (une seule fois pour commencer
+        //Student_Class first = new Student_Class("-LcVjAtMfmtwSRAW4GN4","-LcWU1GWcQU8Rf66ZxvF");
+        //repositorySC.insert(first);
         /***************/
         return repositoryC.getAllClassesByFKStudent(FKStudent);
     }

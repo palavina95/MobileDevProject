@@ -2,15 +2,12 @@ package database.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.os.AsyncTask;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-import database.SchoolManagementDatabase;
-import database.entities.Class;
 import database.entities.Student;
 import database.firebase.StudentListLiveData;
 
@@ -19,7 +16,6 @@ public class StudentRepository {
     private LiveData<List<Student>> allStudents;
 
     public StudentRepository(Application application){
-        SchoolManagementDatabase database = SchoolManagementDatabase.getInstance(application);
     }
 
     public void insert(Student student)

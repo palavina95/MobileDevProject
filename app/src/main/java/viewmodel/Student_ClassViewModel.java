@@ -34,7 +34,7 @@ public class Student_ClassViewModel extends AndroidViewModel {
         repositoryC.delete(studentClass);
     }
 
-    public LiveData<Integer> verifyExistance(int FKStudent, int FKClass) {
+    public LiveData<Integer> verifyExistance(String FKStudent, String FKClass) {
         return repositoryC.verifyExistance(FKStudent, FKClass);
     }
 

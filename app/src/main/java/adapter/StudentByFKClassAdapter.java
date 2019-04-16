@@ -72,14 +72,14 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Student_Class student_class = new Student_Class(student.getPK_ID_Student(), IdClass);
+                Student_Class student_class = new Student_Class(student.getId(), IdClass);
                 if(checkBox.isChecked()) {
                     Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
                     studentClassViewModel.insert(student_class);
                 }else{
                     Toast.makeText(getContext(), "DELETION CONFIRMED !", Toast.LENGTH_LONG).show();
                     studentClassViewModel.delete(student_class);
-                }*/
+                }
             }
         });
 
@@ -89,7 +89,7 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
             Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
             checkBox.setButtonDrawable(transparentDrawable);
         }else {
-            /*studentClassViewModel.verifyExistance(student.getPK_ID_Student(), IdClass).observe(modifyClass, new Observer<Integer>() {
+            studentClassViewModel.verifyExistance(student.getId(), IdClass).observe(modifyClass, new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
                     //If the student has already applied for this class
@@ -97,7 +97,7 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
                         checkBox.setChecked(true);
                     }
                 }
-            });*/
+            });
         }
 
         // Return the completed view to render on screen + notify dataChanged
