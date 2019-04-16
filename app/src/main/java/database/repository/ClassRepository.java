@@ -1,42 +1,45 @@
 package database.repository;
-
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.os.AsyncTask;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
-
 import database.SchoolManagementDatabase;
-import database.async._class.DeleteClassAsyncTask;
-import database.async._class.InsertClassAsyncTask;
-import database.async._class.UpdateClassAsyncTask;
-import database.dao.ClassDao;
 import database.entities.Class;
+import database.firebase.ClassListLiveData;
 
 public class ClassRepository {
 
-    private ClassDao classDao;
     private LiveData<List<Class>> allClasses;
 
     public ClassRepository(Application application){
         SchoolManagementDatabase database = SchoolManagementDatabase.getInstance(application);
-        classDao = database.classDao();
-        allClasses = classDao.getAllClass();
     }
 
     public void insert(Class myClass)
     {
-        new InsertClassAsyncTask(classDao).execute(myClass);
+        String id = FirebaseDatabase.getInstance()
+                .getReference("classes").push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference("classes")
+                .child(id).setValue(myClass);
     }
 
     public void update(Class myClass)
     {
-        new UpdateClassAsyncTask(classDao).execute(myClass);
+        FirebaseDatabase.getInstance()
+                .getReference("classes")
+                .child(myClass.getId())
+                .updateChildren(myClass.toMap());
     }
 
     public void delete(Class myClass)
     {
-        new DeleteClassAsyncTask(classDao).execute(myClass);
+        FirebaseDatabase.getInstance()
+                .getReference("classes")
+                .child(myClass.getId())
+                .removeValue();
     }
 
     public LiveData<List<Class>> getAllClasses() {
@@ -44,11 +47,14 @@ public class ClassRepository {
     }
 
     public LiveData<List<Class>> getClassSearch(String valeurRecherche){
-        return classDao.getAllClassSearch(valeurRecherche);
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("classes");
+
+        return new ClassListLiveData(reference,valeurRecherche);
     }
 
     public LiveData<List<Class>> getAllClassesByFKStudent(int FKStudent){
-        return classDao.getAllClassByFKStudent(FKStudent);
+        return null;
     }
 
 }
