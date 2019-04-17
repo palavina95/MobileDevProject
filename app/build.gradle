@@ -63,6 +63,9 @@ dependencies {
 
     //App indexing
     implementation 'com.google.firebase:firebase-appindexing:17.1.0'
+
+    //Remote control
+    implementation 'com.google.firebase:firebase-config:16.5.0'
 }
 
 //Firebase

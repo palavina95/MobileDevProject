@@ -5,4 +5,6 @@
     <color name="colorAccent">#F8611A</color>
     <color name="whiteSemiTransparent">#7EFFFFFF</color>
     <color name="backgroundLogo">#E1E1E1</color>
+    <color name="colorManagementClass">#468499</color>
+    <color name="colorManagementStudent">#B0E0E6</color>
 </resources>

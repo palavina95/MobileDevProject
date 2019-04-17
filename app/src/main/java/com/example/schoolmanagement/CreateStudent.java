@@ -9,22 +9,64 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
+import java.util.HashMap;
+
 import database.entities.Student;
 import viewmodel.StudentViewModel;
 
 public class CreateStudent extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
+    private EditText textFirstname;
+    private EditText textLastname;
+
+    //Remote control
+    private FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+        //Set developper mode for Remote control
+        remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
+            .setDeveloperModeEnabled(true)
+            .build());
+
+        //Default value for remote control
+        HashMap<String, Object> defaults = new HashMap<>();
+        defaults.put("max_lastname_student",10);
+        defaults.put("max_firstname_student",10);
+        remoteConfig.setDefaults(defaults);
+
+
+        final Task<Void> fetch = remoteConfig.fetch(0);
+        fetch.addOnSuccessListener(this, new OnSuccessListener<Void>() {
+
+            @Override
+            public void onSuccess(Void aVoid) {
+                textFirstname = (EditText)findViewById(R.id.enter_firstname);
+                textLastname = (EditText)findViewById(R.id.enter_lastname);
+                remoteConfig.fetchAndActivate();
+                updateLengthFirstandLastName();
+            }
+        });
+
         Button createButton = (Button) findViewById(R.id.createStudent);
 
         sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
@@ -39,6 +81,15 @@ public class CreateStudent extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
+    public void updateLengthFirstandLastName(){
+        int maxFirstname = (int) remoteConfig.getLong("max_firstname_student");
+        int maxLastname = (int) remoteConfig.getLong("max_lastname_student");
+
+        textFirstname.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxFirstname)});
+        textLastname.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLastname)});
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.admin_settings_actions, menu);
@@ -46,9 +97,7 @@ public class CreateStudent extends AppCompatActivity {
     }
 
     public void createMyStudent(View view) {
-        EditText textFirstname = (EditText)findViewById(R.id.enter_firstname);
         String firstname = textFirstname.getText().toString();
-        EditText textLastname = (EditText)findViewById(R.id.enter_lastname);
         String lastname = textLastname.getText().toString();
         EditText textBirthdate = (EditText)findViewById(R.id.enter_birthdate);
         String birthdate = textBirthdate.getText().toString();
