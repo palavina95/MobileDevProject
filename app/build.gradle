@@ -64,8 +64,12 @@ dependencies {
     //App indexing
     implementation 'com.google.firebase:firebase-appindexing:17.1.0'
 
-    //Remote control
+    //Remote control AND
+    //A/B Testing
     implementation 'com.google.firebase:firebase-config:16.5.0'
+
+    //Cloud messaging
+    implementation 'com.google.firebase:firebase-messaging:17.6.0'
 }
 
 //Firebase

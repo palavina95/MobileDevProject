@@ -63,6 +63,7 @@ public class AdminSettings extends AppCompatActivity {
             }
         });
 
+        //Token if ask to be added in the testMachine for A/B testing
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
