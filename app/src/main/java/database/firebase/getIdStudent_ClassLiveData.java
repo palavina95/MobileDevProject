@@ -54,11 +54,11 @@ public class getIdStudent_ClassLiveData extends LiveData<String> {
             Student_Class entity = childSnapshot.getValue(Student_Class.class);
             entity.setId(childSnapshot.getKey());
 
-            Log.e(TAG, "La dedans IdStudentClass");
+            //Log.e(TAG, "La dedans IdStudentClass");
 
             if(entity.getFK_Student().equals(FK_Student) && entity.getFK_Class().equals(FK_Class)) {
                 valueToReturn = entity.getId();
-                Log.e(TAG, "Ici getIdStudentCLass");
+                //Log.e(TAG, "Ici getIdStudentCLass");
             }
         }
         return valueToReturn;

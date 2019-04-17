@@ -44,6 +44,7 @@ public class Student_ClassRepository {
                 .getReference("manyToMany")
                 .child(student_class.getId())
                 .removeValue();
+
     }
 
     public LiveData<String> getIdStudent_Class(String FKStudent, String FKClass){

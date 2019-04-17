@@ -82,7 +82,7 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
                     boolean change = true;
                     @Override
                     public void onChanged(@Nullable String s) {
-                        if (s != null && change) {
+                        if (!(s.equals(null)) && change) {
                             student_class.setId(s);
 
                             if(checkBox.isChecked()) {
@@ -94,13 +94,11 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
                             }
                             change = false;
                         }
+                        //change = false;
                     }
                 });
 
                 Log.d(TAG, "student_classID : "+student_class.getId());
-
-
-
             }
         });
 
