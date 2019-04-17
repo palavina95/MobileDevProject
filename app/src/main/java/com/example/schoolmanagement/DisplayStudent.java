@@ -61,12 +61,23 @@ public class DisplayStudent extends AppCompatActivity {
         listViewStudentByFKStudent.setAdapter(adapter);
 
         classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
+
         classViewModel.getAllClassByFKStudent(thisStudent.getId(),this).observe(this, new Observer<List<Class>>() {
             @Override
             public void onChanged(@Nullable List<Class> classes) {
                 adapter.addAll(classes);
             }
         });
+
+        /*
+        classViewModel.getAllClass().observe(this, new Observer<List<Class>>() {
+            @Override
+            public void onChanged(@Nullable List<Class> classes) {
+                adapter.addAll(classes);
+            }
+        });
+        */
+
 
         //Block on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

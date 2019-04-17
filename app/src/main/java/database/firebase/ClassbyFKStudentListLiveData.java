@@ -64,24 +64,18 @@ public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
 
             Log.e(TAG, "La dedans before Existance");
 
-            //PROB 1 : always null
             LiveData<Integer> response = new verifyExistanceLiveData(reference2,FK_Student,entity.getId());
 
             response.observe(owner, new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
 
-                    Log.e(TAG, "reponse = "+ response.getValue());
-                    Log.e(TAG, "FK_Student = "+ FK_Student);
-                    Log.e(TAG, "FK_Class = "+ entity.getId());
-
-                    if(response.getValue() == 1) {
+                    if(integer == 1) {
                         classes.add(entity);
-                        Log.e(TAG, "Ici");
+                        Log.e(TAG, "Ici dans la classByFKStudentListLiveData");
                     }
                 }
             });
-
         }
         return classes;
     }

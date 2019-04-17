@@ -60,6 +60,9 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.google.firebase:firebase-database:16.1.0'
+
+    //App indexing
+    implementation 'com.google.firebase:firebase-appindexing:17.1.0'
 }
 
 //Firebase

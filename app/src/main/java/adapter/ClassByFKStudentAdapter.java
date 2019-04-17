@@ -83,7 +83,6 @@ public class ClassByFKStudentAdapter extends ArrayAdapter<Class> {
                     @Override
                     public void onChanged(@Nullable String s) {
                         if (s != null && change) {
-                            Log.e(TAG, "s vaut : "+s);
                             student_class.setId(s);
 
                             if(checkBox.isChecked()) {
