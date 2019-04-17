@@ -29,6 +29,9 @@ public class AdminSettings extends AppCompatActivity {
 
         setContentView(R.layout.activity_admin_settings);
 
+        Button btn = findViewById(R.id.button_manage_student);
+        btn.setBackgroundColor(Color.RED);
+
         //Bloque on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
