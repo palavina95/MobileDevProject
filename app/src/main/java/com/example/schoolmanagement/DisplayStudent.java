@@ -21,11 +21,13 @@ import adapter.ClassByFKStudentAdapter;
 import database.entities.Class;
 import database.entities.Student;
 import viewmodel.ClassViewModel;
+import viewmodel.Student_ClassViewModel;
 
 public class DisplayStudent extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private ClassViewModel classViewModel;
+    private Student_ClassViewModel studentClassViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,27 +58,21 @@ public class DisplayStudent extends AppCompatActivity {
         // Construct the data source
         final ArrayList<Class> arrayOfClasses = new ArrayList<Class>();
 
-        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(DisplayStudent.this, arrayOfClasses,thisStudent.getId());
+        studentClassViewModel = ViewModelProviders.of(this).get(Student_ClassViewModel.class);
+
+        final ClassByFKStudentAdapter adapter = new ClassByFKStudentAdapter(DisplayStudent.this, arrayOfClasses,thisStudent.getId(),studentClassViewModel,this);
 
         listViewStudentByFKStudent.setAdapter(adapter);
 
         classViewModel = ViewModelProviders.of(this).get(ClassViewModel.class);
 
-        classViewModel.getAllClassByFKStudent(thisStudent.getId(),this).observe(this, new Observer<List<Class>>() {
-            @Override
-            public void onChanged(@Nullable List<Class> classes) {
-                adapter.addAll(classes);
-            }
-        });
-
-        /*
         classViewModel.getAllClass().observe(this, new Observer<List<Class>>() {
             @Override
             public void onChanged(@Nullable List<Class> classes) {
                 adapter.addAll(classes);
             }
         });
-        */
+
 
 
         //Block on vertical

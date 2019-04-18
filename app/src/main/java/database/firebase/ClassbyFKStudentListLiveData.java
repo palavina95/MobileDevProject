@@ -56,10 +56,14 @@ public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
         }
     }
 
+
+
     private List<Class> toClassList(DataSnapshot snapshot) {
-        List<Class> classes = new ArrayList<>();
+        final List<Class> classes = new ArrayList<>();
+
+
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            Class entity = childSnapshot.getValue(Class.class);
+            final Class entity = childSnapshot.getValue(Class.class);
             entity.setId(childSnapshot.getKey());
 
             Log.e(TAG, "La dedans before Existance");
@@ -69,13 +73,16 @@ public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
             response.observe(owner, new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
-
                     if(integer == 1) {
-                        classes.add(entity);
-                        Log.e(TAG, "Ici dans la classByFKStudentListLiveData");
+                        entity.setPK_ID_Class(1);
+                        Log.e(TAG, "Ici dans la classByFKStudentListLiveDataaaa");
                     }
                 }
             });
+
+
+
+
         }
         return classes;
     }
