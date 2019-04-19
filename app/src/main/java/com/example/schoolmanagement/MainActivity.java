@@ -23,8 +23,13 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.safetynet.SafetyNet;
 import com.google.android.gms.safetynet.SafetyNetApi;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +38,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+
+    //Firebase authentication instance
+    private FirebaseAuth mAuth;
 
     //Final variable
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -49,94 +57,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Check if users account is set, otherwise create it
-        initUsers();
-
+        mAuth = FirebaseAuth.getInstance();
 
         //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
-    public void captchaClick(View view){
-        SafetyNet.getClient(this).verifyWithRecaptcha(SITE_KEY)
-                .addOnSuccessListener(this,
-                    new OnSuccessListener<SafetyNetApi.RecaptchaTokenResponse>() {
-                    @Override
-                    public void onSuccess(SafetyNetApi.RecaptchaTokenResponse response) {
-                        userResponse = response.getTokenResult();
-                        if(!userResponse.isEmpty()){
-                            sendRequest();
-                        }
-                    }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if(e instanceof ApiException){
-                            ApiException apiException = (ApiException) e;
-                            int statusCode = apiException.getStatusCode();
-                            Log.d(TAG,"Error : "+ CommonStatusCodes.getStatusCodeString(statusCode));
-                        }else{
-                            Log.d(TAG,"Error : "+e.getMessage());
-                        }
-                    }
-                });
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
 
-    private void initUsers(){
-        //Create user for the first time
-        sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
-        //If empty
-        if(!(sharedPreferences.getString("login", "").equals("Admin"))){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("login", "Admin");
-            editor.putString("mdp", "Admin");
-
-            //Create special account to by-pass the captcha for demo
-            editor.putString("loginNoCaptcha", "noCaptcha");
-            editor.putString("mdpNoCaptcha", "");
-
-            editor.commit();
+    private void updateUI(FirebaseUser currentUser) {
+        if(currentUser != null) {
+            //Display personalised message
+            Log.d(TAG, "Hello, " + currentUser.getEmail());
+            Intent intent = new Intent(this, AdminSettings.class);
+            startActivity(intent);
         }
-    }
-
-    public void sendRequest(){
-
-        String url = "https://www.google.com/recaptcha/api/siteverify";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            if (obj.getString("success").equals("true")) {
-                                successCaptcha = true;
-                                Button captchaButton = (Button) findViewById(R.id.captchaButton);
-                                captchaButton.setBackgroundColor(Color.GREEN);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Captcha failed", Toast.LENGTH_LONG).show();
-                    }
-                }) {
-
-            protected Map<String, String> getParams() throws AuthFailureError{
-                 Map<String, String> params = new HashMap<>();
-                 params.put("secret", SITE_SECRET_KEY);
-                 params.put("response", userResponse);
-                 return params;
-            }
-        };
-        AppController.getInstance(this).addToRequestQueue(stringRequest);
-
     }
 
     public void logUser(View view){
@@ -148,20 +89,27 @@ public class MainActivity extends AppCompatActivity {
         String login = loginEt.getText().toString();
         String mdp = mdpEt.getText().toString();
 
-        sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
-
-        if(login.equals(sharedPreferences.getString("login", "")) && mdp.equals(sharedPreferences.getString("mdp",""))
-            && successCaptcha)
-        {
-            Intent intent = new Intent(this, AdminSettings.class);
-            startActivity(intent);
-        }
-        else if(login.equals(sharedPreferences.getString("loginNoCaptcha", "")) && mdp.equals(sharedPreferences.getString("mdpNoCaptcha",""))){
-            Intent intent = new Intent(this, AdminSettings.class);
-            startActivity(intent);
-        }
-        else {
-            Toast.makeText(MainActivity.this, "Wrong login or password", Toast.LENGTH_LONG).show();
+        Log.e(TAG, "login = "+login+" | mdp = "+mdp);
+        if(!login.equals("") && !mdp.equals("")) {
+            mAuth.signInWithEmailAndPassword(login, mdp)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.e(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }else{
+            Toast.makeText(MainActivity.this, "Please enter your email and password !",
+                    Toast.LENGTH_SHORT).show();
         }
 
     }

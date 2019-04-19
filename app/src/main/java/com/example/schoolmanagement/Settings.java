@@ -23,8 +23,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*/ {
+
+    //Firebase authentication instance
+    private FirebaseAuth mAuth;
 
     //Final variable
     private static final String TAG = "MapActivity";
@@ -50,6 +55,8 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //Get sharedPreferences so we can modify it
         sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
@@ -225,22 +232,23 @@ public class Settings extends AppCompatActivity /*implements OnMapReadyCallback*
     }
 
     public void changePassword(View view){
-        EditText oldMdpEt = (EditText) findViewById(R.id.oldmdp);
+        //EditText oldMdpEt = (EditText) findViewById(R.id.oldmdp);
         EditText newMdpEt = (EditText) findViewById(R.id.newmdp);
 
-        String oldMdp = oldMdpEt.getText().toString();
+        //String oldMdp = oldMdpEt.getText().toString();
         String newMdp = newMdpEt.getText().toString();
 
-        sharedPreferences = getSharedPreferences("key_clr", Context.MODE_PRIVATE);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser.updatePassword(newMdp);
+        Toast.makeText(Settings.this, "Password changed successfully", Toast.LENGTH_LONG).show();
 
-        if(oldMdp.equals(sharedPreferences.getString("mdp", ""))){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("mdp", newMdp);
-            editor.commit();
-            Toast.makeText(Settings.this, "Password changed successfully", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(Settings.this, "Wrong old password", Toast.LENGTH_LONG).show();
-        }
+    }
+
+    public void logout(View view){
+        mAuth.signOut();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 
