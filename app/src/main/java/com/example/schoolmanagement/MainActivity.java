@@ -19,6 +19,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.safetynet.SafetyNet;
@@ -39,6 +42,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Advertising
+    private AdView mAdView;
+
     //Firebase authentication instance
     private FirebaseAuth mAuth;
 
@@ -58,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+
+        //Initialize MobileAds
+        MobileAds.initialize(this, "ca-app-pub-7791734206841783~6329702222");
+        //Load ad
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
 
         //Hold the smartphone in vertical mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

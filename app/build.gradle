@@ -73,6 +73,10 @@ dependencies {
 
     //Authentication
     implementation 'com.google.firebase:firebase-auth:16.2.1'
+
+    //Advertising
+    implementation 'com.google.android.gms:play-services-ads:17.2.0'
+
 }
 
 //Firebase
