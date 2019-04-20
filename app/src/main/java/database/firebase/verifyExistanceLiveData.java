@@ -58,14 +58,12 @@ public class verifyExistanceLiveData extends LiveData<Integer> {
             Student_Class entity = childSnapshot.getValue(Student_Class.class);
             entity.setId(childSnapshot.getKey());
 
-            Log.e(TAG, "La dedans verify");
-
             if(entity.getFK_Student().equals(FK_Student) && entity.getFK_Class().equals(FK_Class)) {
                 valueToReturn = 1;
-                Log.e(TAG, "Ici verify");
             }
         }
         return valueToReturn;
     }
+
 
 }

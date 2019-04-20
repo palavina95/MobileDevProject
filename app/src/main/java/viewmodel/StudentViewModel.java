@@ -46,8 +46,8 @@ public class StudentViewModel extends AndroidViewModel {
         return allStudents;
     }
 
-    public LiveData<List<Student>> getAllStudentByFKClass(int FKClass) {
+    /*public LiveData<List<Student>> getAllStudentByFKClass(int FKClass) {
         return repository.getAllStudentsByFKClass(FKClass);
-    }
+    }*/
 
 }

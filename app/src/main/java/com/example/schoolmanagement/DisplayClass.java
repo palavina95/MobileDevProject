@@ -1,6 +1,7 @@
 package com.example.schoolmanagement;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -23,13 +24,16 @@ import java.util.List;
 import adapter.StudentByFKClassAdapter;
 import database.entities.Class;
 import database.entities.Student;
+import database.entities.Student_Class;
 import viewmodel.StudentViewModel;
+import viewmodel.Student_ClassViewModel;
 
 public class DisplayClass extends AppCompatActivity {
 
     //Variables
     private SharedPreferences sharedPreferences;
     private StudentViewModel studentViewModel;
+    private Student_ClassViewModel studentClassViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +67,22 @@ public class DisplayClass extends AppCompatActivity {
         //get the listView
         ListView listViewClassByFKClass = (ListView)findViewById(R.id.listViewClassByFKClass);
 
-
-
         //Data source
         final ArrayList<Student> arrayOfStudents = new ArrayList<Student>();
 
-        final StudentByFKClassAdapter adapterC = new StudentByFKClassAdapter(DisplayClass.this, arrayOfStudents, thisClass.getId());
+        studentClassViewModel = ViewModelProviders.of(this).get(Student_ClassViewModel.class);
+
+        final StudentByFKClassAdapter adapterC = new StudentByFKClassAdapter(DisplayClass.this, arrayOfStudents, thisClass.getId(), studentClassViewModel,this);
 
         listViewClassByFKClass.setAdapter(adapterC);
 
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
-        /*studentViewModel.getAllStudentByFKClass(thisClass.getPK_ID_Class()).observe(this, new Observer<List<Student>>() {
+        studentViewModel.getAllStudentsSimple().observe(this, new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
                 adapterC.addAll(students);
             }
-        });*/
+        });
 
         //Block on vertical
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

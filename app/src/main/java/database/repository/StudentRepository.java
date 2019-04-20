@@ -1,6 +1,7 @@
 package database.repository;
 
 import android.app.Application;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
 
 import com.google.firebase.database.DatabaseReference;
@@ -9,7 +10,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 import database.entities.Student;
+import database.firebase.ClassbyFKStudentListLiveData;
 import database.firebase.StudentListLiveData;
+import database.firebase.StudentbyFKClassLiveData;
 
 public class StudentRepository {
 
@@ -51,11 +54,21 @@ public class StudentRepository {
     }
 
     public LiveData<List<Student>> getAllStudentsSimple(){
-        return allStudents;
+
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("students");
+
+        return new StudentListLiveData(reference, "");
     }
 
-    public LiveData<List<Student>> getAllStudentsByFKClass (int FKClass) {
-        return null;
+    public LiveData<List<Student>> getAllStudentsByFKClass (String FKClass, LifecycleOwner owner) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("students");
+
+        DatabaseReference reference2 = FirebaseDatabase.getInstance()
+                .getReference("manyToMany");
+
+        return new StudentbyFKClassLiveData(reference,reference2,FKClass,owner);
     }
 
 }

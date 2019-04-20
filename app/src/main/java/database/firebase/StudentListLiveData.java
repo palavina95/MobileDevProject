@@ -41,7 +41,7 @@ public class StudentListLiveData extends LiveData<List<Student>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toStudentList(dataSnapshot));
+            setValue(toClassList(dataSnapshot));
         }
 
         @Override
@@ -50,7 +50,7 @@ public class StudentListLiveData extends LiveData<List<Student>> {
         }
     }
 
-    private List<Student> toStudentList(DataSnapshot snapshot) {
+    private List<Student> toClassList(DataSnapshot snapshot) {
         List<Student> students = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Student entity = childSnapshot.getValue(Student.class);

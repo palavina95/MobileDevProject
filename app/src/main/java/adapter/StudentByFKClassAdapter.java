@@ -6,14 +6,17 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.schoolmanagement.DisplayClass;
 import com.example.schoolmanagement.ModifyClass;
 import com.example.schoolmanagement.R;
 
@@ -28,6 +31,8 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
     private String IdClass;
     private Student_ClassViewModel studentClassViewModel;
     public ModifyClass modifyClass;
+    public DisplayClass displayClass;
+    private static final String TAG = "StudentByFKClassAdapter";
 
     public StudentByFKClassAdapter(Context context, ArrayList<Student> students, String IdClass, Student_ClassViewModel student_classViewModel, ModifyClass modifyClass) {
         super(context, 0, students);
@@ -36,9 +41,11 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
         this.modifyClass = modifyClass;
     }
 
-    public StudentByFKClassAdapter(Context context, ArrayList<Student> students, String IdClass) {
+    public StudentByFKClassAdapter(Context context, ArrayList<Student> students, String IdClass, Student_ClassViewModel scvm, DisplayClass dc) {
         super(context, 0, students);
         this.IdClass = IdClass;
+        this. studentClassViewModel = scvm;
+        this.displayClass = dc;
     }
 
     @Override
@@ -63,6 +70,8 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
 
         final CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkbox_view_student);
 
+        final RelativeLayout layoutItem = (RelativeLayout) convertView.findViewById(R.id.itemListStudent);
+
         // Populate the data into the template view using the data object
 
         firstnameStudent.setText(student.getFirstname());
@@ -72,17 +81,28 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Student_Class student_class = new Student_Class(student.getId(), IdClass);
 
+                final Student_Class student_class = new Student_Class(student.getId(), IdClass);
 
+                studentClassViewModel.getIdStudent_Class(student.getId(), IdClass).observe(modifyClass, new Observer<String>() {
 
-                if(checkBox.isChecked()) {
-                    Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
-                    studentClassViewModel.insert(student_class);
-                }else{
-                    Toast.makeText(getContext(), "DELETION CONFIRMED !", Toast.LENGTH_LONG).show();
-                    studentClassViewModel.delete(student_class);
-                }
+                    boolean change = true;
+                    @Override
+                    public void onChanged(@Nullable String s) {
+                        if(!(s.equals(null)) && change){
+                            student_class.setId(s);
+
+                            if(checkBox.isChecked()) {
+                                Toast.makeText(getContext(), "INSCRIPTION CONFIRMED !", Toast.LENGTH_LONG).show();
+                                studentClassViewModel.insert(student_class);
+                            }else{
+                                Toast.makeText(getContext(), "DELETION CONFIRMED !", Toast.LENGTH_LONG).show();
+                                studentClassViewModel.delete(student_class);
+                            }
+                            change = false;
+                        }
+                    }
+                });
             }
         });
 
@@ -91,11 +111,20 @@ public class StudentByFKClassAdapter extends ArrayAdapter<Student> {
         if(getContext().toString().contains("DisplayClass")){
             Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
             checkBox.setButtonDrawable(transparentDrawable);
+            studentClassViewModel.verifyExistance(student.getId(), IdClass).observe(displayClass, new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    if(integer != 1){
+                        layoutItem.setVisibility(View.GONE);
+                    }
+                }
+            });
         }else {
+
             studentClassViewModel.verifyExistance(student.getId(), IdClass).observe(modifyClass, new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
-                    //If the student has already applied for this class
+
                     if (integer >= 1) {
                         checkBox.setChecked(true);
                     }

@@ -6,30 +6,26 @@ import android.arch.lifecycle.Observer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
+import database.entities.Student;
 
-import database.entities.Class;
+public class StudentbyFKClassLiveData extends LiveData<List<Student>> {
 
-public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
-
-    private static final String TAG = "ClassbyFKStudentListLiveData";
-
-    private final DatabaseReference reference,reference2;
+    private static final String TAG = "StudentbtFKClassLiveData";
     private final MyValueEventListener listener = new MyValueEventListener();
-    private final String FK_Student;
+    private final DatabaseReference reference, reference2;
+    private final String FK_Class;
     private final LifecycleOwner owner;
 
-    public ClassbyFKStudentListLiveData(DatabaseReference ref, DatabaseReference ref2, String FK_Student, LifecycleOwner owner) {
-        reference = ref;
-        reference2 = ref2;
-        this.FK_Student = FK_Student;
+    public StudentbyFKClassLiveData(DatabaseReference ref, DatabaseReference ref2, String FK_Class, LifecycleOwner owner) {
+        this.reference = ref;
+        this.reference2 = ref2;
+        this.FK_Class = FK_Class;
         this.owner = owner;
     }
 
@@ -47,7 +43,7 @@ public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toClassList(dataSnapshot));
+            setValue(toStudentList(dataSnapshot));
         }
 
         @Override
@@ -56,26 +52,24 @@ public class ClassbyFKStudentListLiveData extends LiveData<List<Class>> {
         }
     }
 
-    private List<Class> toClassList(DataSnapshot snapshot) {
-        final List<Class> classes = new ArrayList<>();
-
+    private List<Student> toStudentList(DataSnapshot snapshot) {
+        final List<Student> students = new ArrayList<>();
 
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            final Class entity = childSnapshot.getValue(Class.class);
-            entity.setId(childSnapshot.getKey());
+            final Student entity = childSnapshot.getValue(Student.class);
+            entity.setID(childSnapshot.getKey());
 
-            LiveData<Integer> response = new verifyExistanceLiveData(reference2,FK_Student,entity.getId());
+            LiveData<Integer> response = new verifyExistanceLiveData(reference2,FK_Class,entity.getId());
 
             response.observe(owner, new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
                     if(integer == 1) {
-                        entity.setPK_ID_Class(1);
+                        entity.setPK_ID_Student(1);
                     }
                 }
             });
         }
-        return classes;
+        return students;
     }
-
 }
