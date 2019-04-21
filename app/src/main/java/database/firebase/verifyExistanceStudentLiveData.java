@@ -11,17 +11,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import database.entities.Student_Class;
 
-public class getIdStudent_ClassLiveData extends LiveData<String> {
+public class verifyExistanceStudentLiveData extends LiveData<Integer> {
 
-    private static final String TAG = "Student_ClassListLiveData";
-    private final DatabaseReference reference;
-    private final MyValueEventListener listener = new MyValueEventListener();
-    private final String FK_Student, FK_Class;
+    private final String TAG = "verifyExistanceStudentLiveData";
+    private DatabaseReference reference;
+    private String FKStudent;
+    MyValueEventListener listener = new MyValueEventListener();
 
-    public getIdStudent_ClassLiveData(DatabaseReference ref, String FK_Student, String FK_Class) {
-        reference = ref;
-        this.FK_Student = FK_Student;
-        this.FK_Class = FK_Class;
+    public verifyExistanceStudentLiveData(DatabaseReference reference, String FKStudent){
+        this.reference = reference;
+        this.FKStudent = FKStudent;
     }
 
     @Override
@@ -47,20 +46,18 @@ public class getIdStudent_ClassLiveData extends LiveData<String> {
         }
     }
 
-    private String toClassList(DataSnapshot snapshot) {
-        String valueToReturn = "";
+    private int toClassList(DataSnapshot snapshot) {
+        int valueToReturn = 0;
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Student_Class entity = childSnapshot.getValue(Student_Class.class);
             entity.setId(childSnapshot.getKey());
 
-            //Log.e(TAG, "La dedans IdStudentClass");
-
-            if(entity.getFK_Student().equals(FK_Student) && entity.getFK_Class().equals(FK_Class)) {
-                valueToReturn = entity.getId();
-                //Log.e(TAG, "Ici getIdStudentCLass");
+            if(entity.getFK_Student().equals(FKStudent)) {
+                valueToReturn = 1;
             }
         }
         return valueToReturn;
     }
+
 
 }

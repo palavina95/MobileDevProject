@@ -11,17 +11,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import database.entities.Student_Class;
 
-public class getIdStudent_ClassLiveData extends LiveData<String> {
+public class getIdStudent_ClassbyOneIdLiveData extends LiveData<String> {
 
-    private static final String TAG = "Student_ClassListLiveData";
+    private static final String TAG = "Student_ClassbyOneidListLiveData";
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
-    private final String FK_Student, FK_Class;
+    private final String id;
 
-    public getIdStudent_ClassLiveData(DatabaseReference ref, String FK_Student, String FK_Class) {
+    public getIdStudent_ClassbyOneIdLiveData(DatabaseReference ref, String id) {
         reference = ref;
-        this.FK_Student = FK_Student;
-        this.FK_Class = FK_Class;
+        this.id = id;
     }
 
     @Override
@@ -55,12 +54,13 @@ public class getIdStudent_ClassLiveData extends LiveData<String> {
 
             //Log.e(TAG, "La dedans IdStudentClass");
 
-            if(entity.getFK_Student().equals(FK_Student) && entity.getFK_Class().equals(FK_Class)) {
+            if(entity.getFK_Student().equals(id) || entity.getFK_Class().equals(id)) {
                 valueToReturn = entity.getId();
                 //Log.e(TAG, "Ici getIdStudentCLass");
             }
         }
         return valueToReturn;
     }
+
 
 }

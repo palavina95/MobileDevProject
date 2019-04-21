@@ -7,16 +7,27 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.schoolmanagement.DeleteStudent;
 import com.example.schoolmanagement.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import database.entities.Student;
+import viewmodel.Student_ClassViewModel;
 
 public class StudentsAdapter extends ArrayAdapter<Student> {
+
+    private Student_ClassViewModel student_classViewModel;
+    private DeleteStudent deleteStudent ;
     public StudentsAdapter(Context context, ArrayList<Student> students){
         super(context,0,students);
+    }
+
+    public StudentsAdapter(Context context, ArrayList<Student> students, Student_ClassViewModel scvm, DeleteStudent deleteStudent){
+        super(context,0,students);
+        this.student_classViewModel = scvm;
+        this.deleteStudent = deleteStudent;
     }
 
     @Override
@@ -44,6 +55,10 @@ public class StudentsAdapter extends ArrayAdapter<Student> {
         firstNameStudent.setText(student.getFirstname());
 
         lastNameStudent.setText(student.getLastname());
+
+
+
+
 
         // Return the completed view to render on screen + notify dataChanged
         notifyDataSetChanged();

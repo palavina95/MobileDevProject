@@ -42,4 +42,17 @@ public class Student_ClassViewModel extends AndroidViewModel {
         return repositoryC.verifyExistance(FKStudent, FKClass);
     }
 
+    public LiveData<Integer> verifyExistanceStudent(String FKStudent){
+        return repositoryC.verifyExistanceStudent(FKStudent);
+    }
+
+    public LiveData<Integer> verifyExistanceClass(String FKClass){
+        return repositoryC.verifyExistanceClass(FKClass);
+    }
+
+    public LiveData<String> getIdStudent_ClassByOneID(String id){
+        return repositoryC.getIdStudent_ClassByOneId(id);
+    }
+
+
 }

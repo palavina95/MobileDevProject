@@ -11,7 +11,10 @@ import java.util.List;
 
 import database.entities.Student_Class;
 import database.firebase.getIdStudent_ClassLiveData;
+import database.firebase.getIdStudent_ClassbyOneIdLiveData;
+import database.firebase.verifyExistanceClassLiveData;
 import database.firebase.verifyExistanceLiveData;
+import database.firebase.verifyExistanceStudentLiveData;
 
 public class Student_ClassRepository {
 
@@ -60,6 +63,29 @@ public class Student_ClassRepository {
                 .getReference("manyToMany");
 
         return new verifyExistanceLiveData(reference,FKStudent,FKClass);
+    }
+
+    public LiveData<Integer> verifyExistanceStudent(String FKStudent)
+    {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("manyToMany");
+
+        return new verifyExistanceStudentLiveData(reference,FKStudent);
+    }
+
+    public LiveData<Integer> verifyExistanceClass(String FKClass)
+    {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("manyToMany");
+
+        return new verifyExistanceClassLiveData(reference,FKClass);
+    }
+
+    public LiveData<String> getIdStudent_ClassByOneId(String id){
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("manyToMany");
+
+        return new getIdStudent_ClassbyOneIdLiveData(reference,id);
     }
 
 }

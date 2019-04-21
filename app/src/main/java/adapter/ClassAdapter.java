@@ -1,21 +1,36 @@
 package adapter;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.schoolmanagement.DeleteClass;
 import com.example.schoolmanagement.R;
 
 import java.util.ArrayList;
 
 import database.entities.Class;
+import viewmodel.Student_ClassViewModel;
 
 public class ClassAdapter extends ArrayAdapter<Class> {
+
+    private Student_ClassViewModel student_classViewModel;
+    private DeleteClass deleteClass;
+    private String idClass;
+
     public ClassAdapter(Context context, ArrayList<Class> classes) {
         super(context, 0, classes);
+    }
+
+    public ClassAdapter(Context context, Student_ClassViewModel scvm, String idClass) {
+        super(context, 0);
+        this.student_classViewModel = scvm;
+        this.idClass = idClass;
     }
 
     @Override
@@ -43,6 +58,8 @@ public class ClassAdapter extends ArrayAdapter<Class> {
         nameClass.setText(classe.getName());
 
         roomClass.setText(String.valueOf(classe.getRoomNumber()));
+
+
 
         // Return the completed view to render on screen + notify dataChanged
         notifyDataSetChanged();
