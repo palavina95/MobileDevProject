@@ -54,7 +54,6 @@ public class DeleteClass extends AppCompatActivity {
                 //delete manyToMany
                 student_classViewModel = ViewModelProviders.of(maClasse).get(Student_ClassViewModel.class);
 
-                //final ClassAdapter adapterClass = new ClassAdapter(DeleteClass.this, student_classViewModel, thisClass.getId());
                 student_class = new Student_Class("", thisClass.getId());
 
                 student_classViewModel.verifyExistanceClass(thisClass.getId()).observe(maClasse, new Observer<Integer>() {
